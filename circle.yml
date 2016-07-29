@@ -3,9 +3,12 @@ dependencies:
   pre:
     - sudo pip install awscli
     - npm install -g less
+    - npm install -g mocha
 
-## @todo Custom test commands
-#test:
+## Custom test commands
+test:
+  override:
+    - mocha .
 
 ## Custom deployment commands
 deployment:

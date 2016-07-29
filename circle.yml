@@ -15,7 +15,7 @@ deployment:
   production:
     branch: releases
     commands:
-      - ./deploy.sh --bucket=st-webcontent
+      - ./deploy.sh --bucket=advice.shinetext.com
   dev:
     branch: master
     commands:

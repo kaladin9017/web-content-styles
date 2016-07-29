@@ -1,0 +1,23 @@
+## Setup dependencies
+dependencies:
+  pre:
+    - sudo pip install awscli
+    - npm install -g less
+
+## @todo Custom test commands
+#test:
+
+## Custom deployment commands
+deployment:
+  production:
+    branch: releases
+    commands:
+      - ./deploy.sh --bucket=st-webcontent
+  dev:
+    branch: master
+    commands:
+      - ./deploy.sh --bucket=st-webcontent-dev
+  jon:
+    branch: jon
+    commands:
+      - ./deploy.sh --bucket=st-webcontent-jon

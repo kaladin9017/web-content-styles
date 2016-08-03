@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%if (typeof pageTitle !== 'undefined') {%><%= pageTitle %><% } else { %>Shine<% } %></title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:url" content="http://www.shinetext.com" />
+  <meta property="og:title" content="<%if (typeof articleTitle !== 'undefined') {%><%= articleTitle %><% } else { %>Shine<% } %>" />
+  <meta property="og:description" content="Daily tips for self-fulfillment texted to you every morning." />
+  <meta property="og:site_name" content="Shine" />
+  <meta property="og:image" content="http://www.shinetext.com/images/shine-logo.png" />
+
+  <!-- @todo Add Glacial Indifference -->
+  <link href="https://fonts.googleapis.com/css?family=Caveat+Brush" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+  <link href="<%= css %>" rel="stylesheet">
+</head>
+<body>
+  <header style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5))<% if (typeof articleHeaderPhoto !== 'undefined') { %>,url(<%= articleHeaderPhoto %>)<% } %>">
+    <img src="https://images.contentful.com/awpxl2koull4/1WrRHYsb1CsuI0eO2Iiyw2/07aac5896d47b09475ab5ade8e5dfa78/Shine-logo-inv.png?w=100">
+    <% if (typeof articleCategory !== 'undefined') { %>
+    <div class="category"><%= articleCategory %></div>
+    <% } %>
+
+    </div>
+    <h1><%= articleTitle %></h1>
+
+    <div class="-author">
+      <% if (typeof articleAuthor === 'object') { %>
+      <div class="-name">By <%= articleAuthor.name %></div>
+      <% } %>
+    </div>
+  </header>
+
+  <div id="container-body" class="container-fluid">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+      <div id="date"><%= articleDate %></div>
+
+      <div id="tags">
+      <% for (var i=0; i < articleTags.length; i++) { %>
+        <%= articleTags[i] %><%if (i < articleTags.length - 1) {%>, <% } %>
+      <% } %>
+      </div>
+
+      <%- articleBody %>
+    </div>
+  </div>
+</body>
+</html>

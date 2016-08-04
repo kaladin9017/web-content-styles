@@ -1,0 +1,32 @@
+{
+  "name": {
+    "en-US": "Jonathan Uy"
+  },
+  "bio": {
+    "en-US": "CTO [@ShineText](https://twitter.com/ShineText)"
+  },
+  "picture": {
+    "title": "Jonathan Uy - Profile Picture",
+    "file": {
+      "url": "//images.contentful.com/awpxl2koull4/stP13m7YAgQKqO6iIu0u6/4e47e6e291e71d7046dc51971a6d9db2/Zvpur01K.png",
+      "details": {
+        "size": 23778,
+        "image": {
+          "width": 478,
+          "height": 478
+        }
+      },
+      "fileName": "Zvpur01K.png",
+      "contentType": "image/png"
+    }
+  },
+  "instagram": {
+    "en-US": "jonathanjuy"
+  },
+  "facebook": {
+    "en-US": "jon.uy"
+  },
+  "twitter": {
+    "en-US": "jonathanjuy"
+  }
+}

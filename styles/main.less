@@ -1,29 +1,50 @@
 body {
-  .font-primary;
+  .font-karla;
 
   border-top: 4px solid @color-yellow;
   background: white;
 }
 
 header {
-  background-position: center top;
-  background-size: 100% auto;
+  background-position: center;
+  background-size: cover;
   color: white;
-  height: 480px;
-  padding-bottom: @margin-md;
-  padding-top: @margin-md;
+  height: 412px;
+  padding: 0;
   text-align: center;
 
-  h1 {
-
+  .-author {
+    font-size: @font-size-normal;
   }
 
-  .author {
-    font-size: @font-size-normal;
+  .article-header-text {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    max-width: 600px;
   }
 
   .category {
     color: @color-yellow;
     text-transform: uppercase;
+  }
+
+  .title {
+    .font-karla-bold;
+
+    font-size: @font-size-article-title;
+    margin: 0 0 @margin-xs 0;
+  }
+}
+
+.navbar {
+  background: white;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: @margin-xs @margin-sm;
+
+  .shine-logo {
+    max-width: 64px;
   }
 }

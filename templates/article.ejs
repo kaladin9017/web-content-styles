@@ -12,7 +12,6 @@
   <meta property="og:site_name" content="Shine" />
   <meta property="og:image" content="http://www.shinetext.com/images/shine-logo.png" />
 
-  <!-- @todo Add Glacial Indifference -->
   <link href="https://fonts.googleapis.com/css?family=Caveat+Brush" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet" type="text/css">
 
@@ -22,19 +21,22 @@
   <link href="<%= css %>" rel="stylesheet">
 </head>
 <body>
-  <header style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5))<% if (typeof articleHeaderPhoto !== 'undefined') { %>,url(<%= articleHeaderPhoto %>)<% } %>">
-    <img src="https://images.contentful.com/awpxl2koull4/1WrRHYsb1CsuI0eO2Iiyw2/07aac5896d47b09475ab5ade8e5dfa78/Shine-logo-inv.png?w=100">
+  <div class="navbar">
+    <img class="shine-logo" src="https://images.contentful.com/awpxl2koull4/FFhnW3pbga4qmCOM24kmc/8c718dac9a5357db86c55b637461f4f3/Shine-logo-web.png?w=100">
+  </div>
+  <header style="background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.5))<% if (typeof articleHeaderPhoto !== 'undefined') { %>,url(<%= articleHeaderPhoto %>)<% } %>">
     <% if (typeof articleCategory !== 'undefined') { %>
     <div class="category"><%= articleCategory %></div>
     <% } %>
 
-    </div>
-    <h1><%= articleTitle %></h1>
+    <div class="article-header-text">
+      <h1 class="title"><%= articleTitle %></h1>
 
-    <div class="-author">
-      <% if (typeof articleAuthor === 'object') { %>
-      <div class="-name">By <%= articleAuthor.name %></div>
-      <% } %>
+      <div class="-author">
+        <% if (typeof articleAuthor === 'object') { %>
+        By <%= articleAuthor.name %>
+        <% } %>
+      </div>
     </div>
   </header>
 

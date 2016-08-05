@@ -19,6 +19,7 @@ const articleData = {
   articleHeaderPhoto: articleObj.headerPhoto ? `https:${articleObj.headerPhoto.file.url}` : undefined,
   articleTags: articleObj.tags['en-US'],
   articleTitle: articleObj.title['en-US'],
+  articleUrlPath: articleObj.urlPath,
   css: '../_tmp/styles.css',
   pageTitle: `${articleObj.title['en-US']} | Shine`,
 };

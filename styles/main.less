@@ -1,3 +1,5 @@
+@header-height: 412px;
+
 body {
   .font-karla;
 
@@ -9,12 +11,12 @@ header {
   background-position: center;
   background-size: cover;
   color: white;
-  height: 412px;
+  height: @header-height;
   padding: 0;
   text-align: center;
 
   .-author {
-    font-size: @font-size-normal;
+    font-size: @font-size-subtitle;
   }
 
   .article-header-text {
@@ -38,6 +40,99 @@ header {
   }
 }
 
+.pre-article {
+
+  #header-author-photo {
+    position: absolute;
+    left: 50%;
+    margin-left: -45px;
+    top: -45px;
+
+    img {
+      border: 5px solid white;
+      border-radius: 50%;
+      height: 90px;
+      width: 90px;
+    }
+  }
+
+  .social-tags-container {
+    margin-bottom: @margin-sm;
+    margin-top: @margin-md + @margin-sm;
+  }
+
+  .social-container {
+    margin-bottom: @margin-sm;
+
+    a {
+      margin-right: 8px;
+    }
+  }
+
+  .tags-container {
+    height: 35px;
+    margin-bottom: @margin-sm;
+  }
+
+  .tags {
+    color: @color-tags;
+    font-size: @font-size-normal;
+    margin-right: 28px;
+    margin-top: -10px;
+    position: relative;
+    text-align: right;
+    top: 50%;
+  }
+
+  .tags-pin {
+    display: block;
+    float: right;
+    margin-top: -10px;
+    position: relative;
+    top: 50%;
+    width: 20px;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    .social-container {
+      text-align: center;
+    }
+
+    .tags {
+      margin-right: 0;
+      text-align: center;
+    }
+
+    .tags-pin {
+      display: none;
+    }
+  }
+}
+
+.icon-email {
+  background-image: url("https://images.contentful.com/awpxl2koull4/5eeOIV18JOW2ewAMiEukkQ/109f351ece666845a8192bfa31c8aa73/email-social-icon.png");
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+}
+
+.icon-linkedin {
+  background-image: url("https://images.contentful.com/awpxl2koull4/79EQTMLnuEC6yGKGm8kYkK/315b3ba3b78f0f1d4a273c8da489132e/linkedin-social-icon.png");
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+}
+
+.icon-twitter {
+  background-image: url("https://images.contentful.com/awpxl2koull4/3SYgZxMlCwEiCyWc0022AQ/7111cfb7be74d3acf576ca37d82885a1/twitter-social-icon.png");
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+}
+
 .navbar {
   background: white;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
@@ -47,4 +142,8 @@ header {
   .shine-logo {
     max-width: 64px;
   }
+}
+
+#article-body {
+  font-size: @font-size-article-body;
 }

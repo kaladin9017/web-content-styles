@@ -145,5 +145,38 @@ header {
 }
 
 #article-body {
+  color: @color-article-body;
   font-size: @font-size-article-body;
+
+  blockquote {
+    .font-blockquote;
+
+    border-left: 0;
+
+    p {
+      margin: 0 @margin-md;
+    }
+
+    p:before {
+      content:"\A";
+      border-color: @color-primary transparent transparent transparent;
+      border-style: solid;
+      border-width: 50px 200px 0 0;
+      left: @margin-sm;
+      position: absolute;
+      z-index: -1;
+    }
+  }
+
+  h2 {
+    .font-karla-bold;
+
+    color: black;
+    font-size: @font-size-article-section-title;
+    margin: @margin-md 0;
+  }
+
+  p {
+    margin: @margin-sm 0;
+  }
 }

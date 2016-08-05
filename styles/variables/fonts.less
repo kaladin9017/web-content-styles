@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'Glacial Indifference';
+  src: url('http://advice.shinetext.com/fonts/GlacialIndifference-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Glacial Indifference';
+  font-weight: bold;
+  src: url('http://advice.shinetext.com/fonts/GlacialIndifference-Bold.otf');
+}
+
 /**
  * Font mixins and variables.
  */
@@ -17,6 +28,12 @@
   font-weight: 700;
 }
 
+.font-blockquote() {
+  font-family: 'Glacial Indifference';
+  font-weight: bold;
+  font-size: @font-size-article-blockquote;
+}
+
 @font-size-xl: 86px;
 @font-size-header: 42px;
 @font-size-title: 30px;
@@ -29,4 +46,6 @@
 @font-size-sm: 14px;
 
 @font-size-article-title: 54px;
+@font-size-article-section-title: 42px;
 @font-size-article-body: 20px;
+@font-size-article-blockquote: 32px;

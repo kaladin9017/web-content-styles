@@ -75,6 +75,16 @@
       <div id="article-body">
         <%- articleBody %>
       </div>
+
+      <div class="author-section">
+        <div class="-photo-container">
+          <img src="https:<%= articleAuthor.picture.file.url %>">
+        </div>
+        <div class="-info-container">
+          <div class="-name">Author: <%= articleAuthor.name %></div>
+          <div class="-bio"><%- articleAuthor.bio %></div>
+        </div>
+      </div>
     </div>
   </div>
 </body>

@@ -11,6 +11,9 @@ const marked = require('marked');
 
 const articleJson = fs.readFileSync('article-data.json', 'utf-8');
 const articleObj = JSON.parse(articleJson);
+if (articleObj.author && articleObj.author.bio) {
+  articleObj.author.bio = marked(articleObj.author.bio);
+}
 
 const articleData = {
   articleAuthor: articleObj.author,

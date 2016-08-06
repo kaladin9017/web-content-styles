@@ -7,6 +7,9 @@ body {
   background: white;
 }
 
+/**
+ * Article header
+ */
 header {
   background-position: center;
   background-size: cover;
@@ -40,6 +43,9 @@ header {
   }
 }
 
+/**
+ * Items before the main article section
+ */
 .pre-article {
 
   #header-author-photo {
@@ -144,6 +150,9 @@ header {
   }
 }
 
+/**
+ * Main article section
+ */
 #article-body {
   color: @color-article-body;
   font-size: @font-size-article-body;
@@ -193,5 +202,40 @@ header {
 
   p {
     margin: @margin-sm 0;
+  }
+}
+
+/**
+ * Author section below the article,
+ */
+.author-section {
+  margin-top: @margin-lg;
+
+  .-info-container {
+    margin-left: 100px + @margin-md;
+
+    .-bio {
+      .font-karla;
+
+      font-size: @font-size-author-bio;
+    }
+
+    .-name {
+      .font-karla-bold;
+
+      font-size: @font-size-author-name;
+      margin-bottom: @margin-sm;
+    }
+  }
+
+  .-photo-container {
+    float: left;
+
+    img {
+      border: 5px solid white;
+      border-radius: 50%;
+      height: 100px;
+      width: 100px;
+    }
   }
 }

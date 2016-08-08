@@ -139,6 +139,9 @@ header {
   width: 35px;
 }
 
+/**
+ * Navigation bar
+ */
 .navbar {
   background: white;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
@@ -147,6 +150,100 @@ header {
 
   .shine-logo {
     max-width: 64px;
+  }
+
+  .navbar-links-container {
+    .font-karla-bold;
+
+    display: block;
+    float: right;
+    font-size: @font-size-normal;
+    margin-right: @margin-md;
+    margin-top: -@font-size-normal / 2;
+    position: absolute;
+    right: 0;
+    top: 50%;
+
+    .navbar-links {
+      display: inline;
+      margin-left: @margin-md;
+
+      a:active,
+      a:hover,
+      a:link,
+      a:visited {
+        color: @color-navbar-links;
+        text-decoration: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+}
+
+/**
+ * Footer
+ */
+footer {
+  .font-karla-bold;
+
+  background: black;
+  border-top: 2px solid white;
+  font-size: @font-size-normal;
+  padding: @margin-md 0;
+
+  .page-links {
+    margin: @margin-md 0;
+    text-align: center;
+
+    a:active,
+    a:hover,
+    a:link,
+    a:visited {
+      color: @color-footer;
+      display: inline-block;
+      margin: @margin-xs;
+      text-decoration: none;
+
+      @media (max-width: @screen-xs-max) {
+        display: block;
+      }
+    }
+  }
+
+  .social-icons {
+    margin: @margin-md 0;
+    text-align: center;
+
+    a {
+      margin: @margin-xs;
+    }
+
+    .-icon-facebook {
+      background-image: url("https://images.contentful.com/awpxl2koull4/1I5gf4C4lCSSwIusOG8IwO/8c16cf27bb93b1be2b191621b8246f67/icon-facebook-footer.png");
+      background-repeat: no-repeat;
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+    }
+
+    .-icon-instagram {
+      background-image: url("https://images.contentful.com/awpxl2koull4/2QmAXFoxp6gCyYMc8YIyAo/adb58150bf7f8bcbd50e6ab428f79c44/icon-instagram-footer.png");
+      background-repeat: no-repeat;
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+    }
+
+    .-icon-twitter {
+      background-image: url("https://images.contentful.com/awpxl2koull4/3NAOvCB3FK0qKA2QYSkEWa/1d8cff31c99583f395742574076c0c90/icon-twitter-footer.png");
+      background-repeat: no-repeat;
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+    }
   }
 }
 
@@ -209,7 +306,7 @@ header {
  * Author section below the article,
  */
 .author-section {
-  margin-top: @margin-lg;
+  margin: @margin-lg 0;
 
   .-info-container {
     margin-left: 100px + @margin-md;

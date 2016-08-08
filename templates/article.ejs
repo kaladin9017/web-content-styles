@@ -99,7 +99,7 @@
           </div>
           <img class="tags-pin" src="https://images.contentful.com/awpxl2koull4/6YLMyJkVLaWA8giwgIaqIe/1127aa4d12a5121257b3318d3d06dc4e/tag-pin.png">
         </div>
-      </div>
+      </div> <!-- end post-article -->
 
       <div class="author-section">
         <div class="-photo-container">
@@ -108,10 +108,29 @@
         <div class="-info-container">
           <div class="-name">Author: <%= articleAuthor.name %></div>
           <div class="-bio"><%- articleAuthor.bio %></div>
+
+          <div class="-social-links-container">
+            <% if (articleAuthor.facebook) { %>
+            <a class="-social-link" href="https://www.facebook.com/<%= articleAuthor.facebook %>">Facebook</a>
+            <% } %>
+
+            <% if (articleAuthor.twitter) { %>
+            <a class="-social-link" href="https://www.twitter.com/<%= articleAuthor.twitter %>">Twitter</a>
+            <% } %>
+
+            <% if (articleAuthor.instagram) { %>
+            <a class="-social-link" href="https://www.instagram.com/<%= articleAuthor.instagram %>">Instagram</a>
+            <% } %>
+
+            <% if (articleAuthor.linkedin) { %>
+            <a class="-social-link" href="https://linkedin.com/in/<%= articleAuthor.linkedin %>">LinkedIn</a>
+            <% } %>
+          </div>
         </div>
-      </div>
+      </div> <!-- end author-section -->
+
     </div>
-  </div>
+  </div> <!-- end main container-fluid -->
 
   <footer>
     <div class="-social-icons">

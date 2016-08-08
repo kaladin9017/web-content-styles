@@ -145,10 +145,12 @@ header {
 .navbar {
   background: white;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+  height: 68px;
   margin: 0;
   padding: @margin-xs @margin-sm;
 
   .shine-logo {
+    max-height: 44px;
     max-width: 64px;
   }
 
@@ -191,6 +193,7 @@ footer {
 
   background: black;
   border-top: 2px solid white;
+  clear: both; /* note: article footer is inside an absolute positioned div. need this to position correctly */
   font-size: @font-size-normal;
   padding: @margin-md 0;
 
@@ -239,6 +242,20 @@ footer {
       background-repeat: no-repeat;
     }
   }
+}
+
+/**
+ * Main container for article content. Need to absolute position this so that
+ * the content draws on top of the header as it scrolls down for parallax. And
+ * removing all margin and padding so that the footer it contains can be
+ * drawn full-width.
+ */
+.main-content {
+  background: rgba(255,255,255,1);
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 0;
 }
 
 /**

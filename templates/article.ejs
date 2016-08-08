@@ -34,7 +34,9 @@
     </div>
   </div>
 
-  <header style="background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.5))<% if (typeof articleHeaderPhoto !== 'undefined') { %>,url(<%= articleHeaderPhoto %>)<% } %>">
+  <header
+    data-68="background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.5))<% if (typeof articleHeaderPhoto !== 'undefined') { %>,url(<%= articleHeaderPhoto %>)<% } %>; transform: translate3d(0px,0%,0px)"
+    data-500="background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8))<% if (typeof articleHeaderPhoto !== 'undefined') { %>,url(<%= articleHeaderPhoto %>)<% } %>; transform: translate3d(0px,100%,0px)">
     <% if (typeof articleCategory !== 'undefined') { %>
     <div class="category"><%= articleCategory %></div>
     <% } %>
@@ -50,7 +52,7 @@
     </div>
   </header>
 
-  <div class="container-fluid">
+  <div class="container-fluid main-content">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 
       <div class="row pre-article">
@@ -111,41 +113,46 @@
 
           <div class="-social-links-container">
             <% if (articleAuthor.facebook) { %>
-            <a class="-social-link" href="https://www.facebook.com/<%= articleAuthor.facebook %>">Facebook</a>
+            <a class="-social-link" href="https://www.facebook.com/<%= articleAuthor.facebook %>" target="_blank">Facebook</a>
             <% } %>
 
             <% if (articleAuthor.twitter) { %>
-            <a class="-social-link" href="https://www.twitter.com/<%= articleAuthor.twitter %>">Twitter</a>
+            <a class="-social-link" href="https://www.twitter.com/<%= articleAuthor.twitter %>" target="_blank">Twitter</a>
             <% } %>
 
             <% if (articleAuthor.instagram) { %>
-            <a class="-social-link" href="https://www.instagram.com/<%= articleAuthor.instagram %>">Instagram</a>
+            <a class="-social-link" href="https://www.instagram.com/<%= articleAuthor.instagram %>" target="_blank">Instagram</a>
             <% } %>
 
             <% if (articleAuthor.linkedin) { %>
-            <a class="-social-link" href="https://linkedin.com/in/<%= articleAuthor.linkedin %>">LinkedIn</a>
+            <a class="-social-link" href="https://linkedin.com/in/<%= articleAuthor.linkedin %>" target="_blank">LinkedIn</a>
             <% } %>
           </div>
         </div>
       </div> <!-- end author-section -->
 
     </div>
+
+    <footer>
+      <div class="-social-icons">
+        <a class="-icon-facebook" href="https://www.facebook.com/Shine-Text" target="_blank"></a>
+        <a class="-icon-instagram" href="https://instagram.com/ShineText" target="_blank"></a>
+        <a class="-icon-twitter" href="https://twitter.com/ShineText" target="_blank"></a>
+      </div>
+      <div class="page-links">
+        <a href="/">Get Life Advice</a>
+        <a href="http://www.shinetext.com/referrals">Tell Friends</a>
+        <a href="http://www.shinetext.com/squad">Squad</a>
+        <a href="http://www.shinetext.com/faq">FAQ</a>
+        <a href="http://www.shinetext.com/privacy-policy">Privacy Policy</a>
+        <a href="http://www.shinetext.com/terms-of-service">Terms of Service</a>
+      </div>
+    </footer>
   </div> <!-- end main container-fluid -->
 
-  <footer>
-    <div class="-social-icons">
-      <a class="-icon-facebook" href="https://www.facebook.com/Shine-Text" target="_blank"></a>
-      <a class="-icon-instagram" href="https://instagram.com/ShineText" target="_blank"></a>
-      <a class="-icon-twitter" href="https://twitter.com/ShineText" target="_blank"></a>
-    </div>
-    <div class="page-links">
-      <a href="/">Get Life Advice</a>
-      <a href="http://www.shinetext.com/referrals">Tell Friends</a>
-      <a href="http://www.shinetext.com/squad">Squad</a>
-      <a href="http://www.shinetext.com/faq">FAQ</a>
-      <a href="http://www.shinetext.com/privacy-policy">Privacy Policy</a>
-      <a href="http://www.shinetext.com/terms-of-service">Terms of Service</a>
-    </div>
-  </footer>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
+  <script type="text/javascript">
+  var s = skrollr.init();
+  </script>
 </body>
 </html>

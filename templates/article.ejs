@@ -84,6 +84,23 @@
         <%- articleBody %>
       </div>
 
+      <div class="post-article">
+        <div class="-social-icons">
+          <a class="-icon-twitter" href="http://twitter.com/share?via=ShineText&url=http://advice.shinetext.com/<%= articleUrlPath %>&text=<%= articleTitle %>" target="_blank"></a>
+          <a class="-icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://advice.shinetext.com/<%= articleUrlPath %>&title=<%= articleTitle %>" target="_blank"></a>
+          <a class="-icon-email" href="mailto:?subject=<%= articleTitle %>&body=Article: http://advice.shinetext.com/<%= articleUrlPath %>" rel="external"></a>
+        </div>
+
+        <div class="tags-container">
+          <div class="tags">
+          <% for (var i=0; i < articleTags.length; i++) { %>
+            <%= articleTags[i] %><%if (i < articleTags.length - 1) {%>, <% } %>
+          <% } %>
+          </div>
+          <img class="tags-pin" src="https://images.contentful.com/awpxl2koull4/6YLMyJkVLaWA8giwgIaqIe/1127aa4d12a5121257b3318d3d06dc4e/tag-pin.png">
+        </div>
+      </div>
+
       <div class="author-section">
         <div class="-photo-container">
           <img src="https:<%= articleAuthor.picture.file.url %>">
@@ -97,7 +114,7 @@
   </div>
 
   <footer>
-    <div class="social-icons">
+    <div class="-social-icons">
       <a class="-icon-facebook" href="https://www.facebook.com/Shine-Text" target="_blank"></a>
       <a class="-icon-instagram" href="https://instagram.com/ShineText" target="_blank"></a>
       <a class="-icon-twitter" href="https://twitter.com/ShineText" target="_blank"></a>

@@ -213,36 +213,30 @@ footer {
     }
   }
 
-  .social-icons {
+  .-social-icons {
     margin: @margin-md 0;
     text-align: center;
 
     a {
+      display: inline-block;
+      height: 50px;
+      width: 50px;
       margin: @margin-xs;
     }
 
     .-icon-facebook {
       background-image: url("https://images.contentful.com/awpxl2koull4/1I5gf4C4lCSSwIusOG8IwO/8c16cf27bb93b1be2b191621b8246f67/icon-facebook-footer.png");
       background-repeat: no-repeat;
-      display: inline-block;
-      height: 50px;
-      width: 50px;
     }
 
     .-icon-instagram {
       background-image: url("https://images.contentful.com/awpxl2koull4/2QmAXFoxp6gCyYMc8YIyAo/adb58150bf7f8bcbd50e6ab428f79c44/icon-instagram-footer.png");
       background-repeat: no-repeat;
-      display: inline-block;
-      height: 50px;
-      width: 50px;
     }
 
     .-icon-twitter {
       background-image: url("https://images.contentful.com/awpxl2koull4/3NAOvCB3FK0qKA2QYSkEWa/1d8cff31c99583f395742574076c0c90/icon-twitter-footer.png");
       background-repeat: no-repeat;
-      display: inline-block;
-      height: 50px;
-      width: 50px;
     }
   }
 }
@@ -299,6 +293,50 @@ footer {
 
   p {
     margin: @margin-sm 0;
+  }
+}
+
+/**
+ * Post-article section for social sharing and tags.
+ */
+.post-article {
+  margin-top: @margin-lg;
+  text-align: center;
+
+  .-social-icons {
+    a {
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+    }
+
+    .-icon-email {
+      background-image: url("https://images.contentful.com/awpxl2koull4/5eeOIV18JOW2ewAMiEukkQ/109f351ece666845a8192bfa31c8aa73/email-social-icon.png");
+      background-repeat: no-repeat;
+    }
+
+    .-icon-linkedin {
+      background-image: url("https://images.contentful.com/awpxl2koull4/79EQTMLnuEC6yGKGm8kYkK/315b3ba3b78f0f1d4a273c8da489132e/linkedin-social-icon.png");
+      background-repeat: no-repeat;
+    }
+
+    .-icon-twitter {
+      background-image: url("https://images.contentful.com/awpxl2koull4/3SYgZxMlCwEiCyWc0022AQ/7111cfb7be74d3acf576ca37d82885a1/twitter-social-icon.png");
+      background-repeat: no-repeat;
+    }
+  }
+
+  .tags {
+    color: @color-tags;
+    display: inline-block;
+    font-size: @font-size-normal;
+  }
+
+  .tags-pin {
+    display: inline-block;
+    margin-left: 8px;
+    position: relative;
+    top: -2px;
   }
 }
 

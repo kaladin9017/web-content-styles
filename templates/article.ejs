@@ -56,7 +56,7 @@
       <div class="row pre-article">
         <% if (articleAuthor.picture && articleAuthor.picture.file) { %>
         <div id="header-author-photo">
-          <img src="https:<%= articleAuthor.picture.file.url %>">
+          <img src="https:<%= articleAuthor.picture.file.url %>?fit=thumb&w=100&h=100">
         </div>
         <% } %>
 
@@ -103,7 +103,7 @@
 
       <div class="author-section">
         <div class="-photo-container">
-          <img src="https:<%= articleAuthor.picture.file.url %>">
+          <img src="https:<%= articleAuthor.picture.file.url %>?fit=thumb&w=100&h=100">
         </div>
         <div class="-info-container">
           <div class="-name">Author: <%= articleAuthor.name %></div>

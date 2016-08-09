@@ -6,11 +6,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:url" content="http://www.shinetext.com" />
+  <meta property="og:url" content="http://advice.shinetext.com/<%= articleUrlPath %>" />
   <meta property="og:title" content="<%if (typeof articleTitle !== 'undefined') {%><%= articleTitle %> | <% } %>Shine" />
   <meta property="og:description" content="Daily tips for self-fulfillment texted to you every morning." />
   <meta property="og:site_name" content="Shine" />
-  <meta property="og:image" content="http://www.shinetext.com/images/shine-logo.png" />
+  <meta property="og:image" content="<% if (typeof articleHeaderPhoto !== 'undefined') { %><%= articleHeaderPhoto %><% } else { %>https://images.contentful.com/awpxl2koull4/FFhnW3pbga4qmCOM24kmc/8c718dac9a5357db86c55b637461f4f3/Shine-logo-web.png<% } %>" />
 
   <link href="https://fonts.googleapis.com/css?family=Caveat+Brush" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet" type="text/css">
@@ -21,7 +21,6 @@
   <link href="<%= css %>" rel="stylesheet">
 </head>
 <body>
-
   <div class="navbar">
     <a href="http://www.shinetext.com">
       <img class="shine-logo" src="https://images.contentful.com/awpxl2koull4/FFhnW3pbga4qmCOM24kmc/8c718dac9a5357db86c55b637461f4f3/Shine-logo-web.png?w=100">
@@ -66,9 +65,10 @@
         <!-- <div id="date"><%= articleDate %></div> -->
         <div class="social-tags-container">
           <div class="social-container col-xs-12 col-xs-offset-0 col-md-6">
-            <a class="icon-twitter" href="http://twitter.com/share?via=ShineText&url=http://advice.shinetext.com/<%= articleUrlPath %>&text=<%= articleTitle %>" target="_blank"></a>
-            <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://advice.shinetext.com/<%= articleUrlPath %>&title=<%= articleTitle %>" target="_blank"></a>
-            <a class="icon-email" href="mailto:?subject=<%= articleTitle %>&body=Article: http://advice.shinetext.com/<%= articleUrlPath %>" rel="external"></a>
+            <a class="icon-facebook social-icon" href="http://www.facebook.com/sharer/sharer.php?u=http://advice.shinetext.com/<%= articleUrlPath %>" target="_blank"></a>
+            <a class="icon-twitter social-icon" href="http://twitter.com/share?via=ShineText&url=http://advice.shinetext.com/<%= articleUrlPath %>&text=<%= articleTitle %>" target="_blank"></a>
+            <a class="icon-linkedin social-icon" href="https://www.linkedin.com/shareArticle?mini=true&url=http://advice.shinetext.com/<%= articleUrlPath %>&title=<%= articleTitle %>" target="_blank"></a>
+            <a class="icon-email social-icon" href="mailto:?subject=<%= articleTitle %>&body=Article: http://advice.shinetext.com/<%= articleUrlPath %>" rel="external"></a>
           </div>
 
           <div class="tags-container col-xs-12 col-xs-offset-0 col-md-6">
@@ -88,10 +88,11 @@
       </div>
 
       <div class="post-article">
-        <div class="-social-icons">
-          <a class="-icon-twitter" href="http://twitter.com/share?via=ShineText&url=http://advice.shinetext.com/<%= articleUrlPath %>&text=<%= articleTitle %>" target="_blank"></a>
-          <a class="-icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://advice.shinetext.com/<%= articleUrlPath %>&title=<%= articleTitle %>" target="_blank"></a>
-          <a class="-icon-email" href="mailto:?subject=<%= articleTitle %>&body=Article: http://advice.shinetext.com/<%= articleUrlPath %>" rel="external"></a>
+        <div class="social-container">
+          <a class="icon-facebook social-icon" href="http://www.facebook.com/sharer/sharer.php?u=http://advice.shinetext.com/<%= articleUrlPath %>" target="_blank"></a>
+          <a class="icon-twitter social-icon" href="http://twitter.com/share?via=ShineText&url=http://advice.shinetext.com/<%= articleUrlPath %>&text=<%= articleTitle %>" target="_blank"></a>
+          <a class="icon-linkedin social-icon" href="https://www.linkedin.com/shareArticle?mini=true&url=http://advice.shinetext.com/<%= articleUrlPath %>&title=<%= articleTitle %>" target="_blank"></a>
+          <a class="icon-email social-icon" href="mailto:?subject=<%= articleTitle %>&body=Article: http://advice.shinetext.com/<%= articleUrlPath %>" rel="external"></a>
         </div>
 
         <div class="tags-container">

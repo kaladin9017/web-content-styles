@@ -269,6 +269,7 @@ footer {
     .font-blockquote;
 
     border-left: 0;
+    padding: (@margin-md+@margin-sm) @margin-sm;
 
     p {
       margin: 0 @margin-md;
@@ -290,7 +291,10 @@ footer {
 
     color: black;
     font-size: @font-size-article-section-title;
-    margin: @margin-md 0;
+    margin-top: @margin-md + @margin-sm;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: 0;
   }
 
   ol,ul {
@@ -366,6 +370,10 @@ footer {
   .-info-container {
     margin-left: 100px + @margin-md;
 
+    @media (max-width: @screen-xs-max) {
+      margin-left: 0;
+    }
+
     .-bio {
       .font-karla;
 
@@ -393,6 +401,12 @@ footer {
 
   .-photo-container {
     float: left;
+    margin-bottom: @margin-sm;
+
+    @media (max-width: @screen-xs-max) {
+      float: none;
+      text-align: center;
+    }
 
     img {
       border: 5px solid white;

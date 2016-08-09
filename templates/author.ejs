@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= authorName %></title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:url" content="http://www.shinetext.com" />
+  <meta property="og:title" content="<%= authorName %> | Shine" />
+  <meta property="og:description" content="Daily tips for self-fulfillment texted to you every morning." />
+  <meta property="og:site_name" content="Shine" />
+  <meta property="og:image" content="http://www.shinetext.com/images/shine-logo.png" />
+
+  <link href="https://fonts.googleapis.com/css?family=Caveat+Brush" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+  <link href="<%= css %>" rel="stylesheet">
+</head>
+<body>
+  <div id="name"><%= authorName %></div>
+
+  <% if (typeof authorBio !== 'undefined') { %>
+  <div id="bio"><%- authorBio %></div>
+  <% } %>
+
+  <% if (typeof authorPicture !== 'undefined') { %>
+  <img id="picture" src="<%= authorPicture %>">
+  <% } %>
+
+  <% if (typeof authorInstagram !== 'undefined') { %>
+  <div id="instagram">Instagram: <a href="https://instagram.com/<%= authorInstagram %>" target="_blank"><%= authorInstagram %></a></div>
+  <% } %>
+
+  <% if (typeof authorFacebook !== 'undefined') { %>
+  <div id="facebook">Facebook: <a href="https://facebook.com/<%= authorFacebook %>" target="_blank"></a><%= authorFacebook %></div>
+  <% } %>
+
+  <% if (typeof authorTwitter !== 'undefined') { %>
+  <div id="twitter">Twitter: <a href="https://twitter.com/<%= authorTwitter %>" target="_blank"><%= authorTwitter %></a></div>
+  <% } %>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%if (typeof pageTitle !== 'undefined') {%><%= pageTitle %><% } else { %>Shine<% } %></title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:url" content="http://advice.shinetext.com/<%= articleUrlPath %>" />
+  <meta property="og:title" content="<%if (typeof articleTitle !== 'undefined') {%><%= articleTitle %> | <% } %>Shine" />
+  <meta property="og:description" content="Daily tips for self-fulfillment texted to you every morning." />
+  <meta property="og:site_name" content="Shine" />
+  <meta property="og:image" content="<% if (typeof articleHeaderPhoto !== 'undefined') { %><%= articleHeaderPhoto %><% } else { %>https://images.contentful.com/awpxl2koull4/FFhnW3pbga4qmCOM24kmc/8c718dac9a5357db86c55b637461f4f3/Shine-logo-web.png<% } %>" />
+
+  <link href="https://fonts.googleapis.com/css?family=Caveat+Brush" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+  <link href="<%= css %>" rel="stylesheet">
+</head>
+<body>
+  <div class="navbar">
+    <a href="http://www.shinetext.com">
+      <img class="shine-logo" src="https://images.contentful.com/awpxl2koull4/FFhnW3pbga4qmCOM24kmc/8c718dac9a5357db86c55b637461f4f3/Shine-logo-web.png?w=100">
+    </a>
+
+    <div class="navbar-links-container">
+        <div class="navbar-links"><a href="/">Get Life Advice</a></div>
+        <div class="navbar-links"><a href="http://www.shinetext.com/referrals">Tell Friends</a></div>
+        <div class="navbar-links"><a href="http://www.shinetext.com/squad">Squad</a></div>
+    </div>
+  </div>
+
+  <header
+    style="background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.5))<% if (typeof articleHeaderPhoto !== 'undefined') { %>,url(<%= articleHeaderPhoto %>)<% } %>;"
+    data-68="background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.5))<% if (typeof articleHeaderPhoto !== 'undefined') { %>,url(<%= articleHeaderPhoto %>)<% } %>; transform: translate3d(0px,0%,0px)"
+    data-500="background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8))<% if (typeof articleHeaderPhoto !== 'undefined') { %>,url(<%= articleHeaderPhoto %>)<% } %>; transform: translate3d(0px,100%,0px)">
+    <% if (typeof articleCategory !== 'undefined') { %>
+    <div class="category"><%= articleCategory %></div>
+    <% } %>
+
+    <div class="article-header-text">
+      <h1 class="title"><%= articleTitle %></h1>
+
+      <% if (articleAuthor && articleAuthor.name) { %>
+      <div class="-author">
+        By <%= articleAuthor.name %>
+      </div>
+      <% } %>
+    </div>
+  </header>
+
+  <div class="container-fluid main-content">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+
+      <div class="row pre-article">
+        <% if (articleAuthor.picture && articleAuthor.picture.file) { %>
+        <div id="header-author-photo">
+          <img src="https:<%= articleAuthor.picture.file.url %>?fit=thumb&w=100&h=100">
+        </div>
+        <% } %>
+
+        <!-- <div id="date"><%= articleDate %></div> -->
+        <div class="social-tags-container">
+          <div class="social-container col-xs-12 col-xs-offset-0 col-md-6">
+            <a class="icon-facebook social-icon" href="http://www.facebook.com/sharer/sharer.php?u=http://advice.shinetext.com/<%= articleUrlPath %>" target="_blank"></a>
+            <a class="icon-twitter social-icon" href="http://twitter.com/share?via=ShineText&url=http://advice.shinetext.com/<%= articleUrlPath %>&text=<%= articleTitle %>" target="_blank"></a>
+            <a class="icon-linkedin social-icon" href="https://www.linkedin.com/shareArticle?mini=true&url=http://advice.shinetext.com/<%= articleUrlPath %>&title=<%= articleTitle %>" target="_blank"></a>
+            <a class="icon-email social-icon" href="mailto:?subject=<%= articleTitle %>&body=Article: http://advice.shinetext.com/<%= articleUrlPath %>" rel="external"></a>
+          </div>
+
+          <div class="tags-container col-xs-12 col-xs-offset-0 col-md-6">
+            <img class="tags-pin" src="https://images.contentful.com/awpxl2koull4/6YLMyJkVLaWA8giwgIaqIe/1127aa4d12a5121257b3318d3d06dc4e/tag-pin.png">
+
+            <div class="tags">
+            <% for (var i=0; i < articleTags.length; i++) { %>
+              <%= articleTags[i] %><%if (i < articleTags.length - 1) {%>, <% } %>
+            <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="article-body">
+        <%- articleBody %>
+      </div>
+
+      <div class="post-article">
+        <div class="social-container">
+          <a class="icon-facebook social-icon" href="http://www.facebook.com/sharer/sharer.php?u=http://advice.shinetext.com/<%= articleUrlPath %>" target="_blank"></a>
+          <a class="icon-twitter social-icon" href="http://twitter.com/share?via=ShineText&url=http://advice.shinetext.com/<%= articleUrlPath %>&text=<%= articleTitle %>" target="_blank"></a>
+          <a class="icon-linkedin social-icon" href="https://www.linkedin.com/shareArticle?mini=true&url=http://advice.shinetext.com/<%= articleUrlPath %>&title=<%= articleTitle %>" target="_blank"></a>
+          <a class="icon-email social-icon" href="mailto:?subject=<%= articleTitle %>&body=Article: http://advice.shinetext.com/<%= articleUrlPath %>" rel="external"></a>
+        </div>
+
+        <div class="tags-container">
+          <div class="tags">
+          <% for (var i=0; i < articleTags.length; i++) { %>
+            <%= articleTags[i] %><%if (i < articleTags.length - 1) {%>, <% } %>
+          <% } %>
+          </div>
+          <img class="tags-pin" src="https://images.contentful.com/awpxl2koull4/6YLMyJkVLaWA8giwgIaqIe/1127aa4d12a5121257b3318d3d06dc4e/tag-pin.png">
+        </div>
+      </div> <!-- end post-article -->
+
+      <div class="author-section">
+        <div class="-photo-container">
+          <img src="https:<%= articleAuthor.picture.file.url %>?fit=thumb&w=100&h=100">
+        </div>
+        <div class="-info-container">
+          <div class="-name">Author: <%= articleAuthor.name %></div>
+          <div class="-bio"><%- articleAuthor.bio %></div>
+
+          <div class="-social-links-container">
+            <% if (articleAuthor.facebook) { %>
+            <a class="-social-link" href="https://www.facebook.com/<%= articleAuthor.facebook %>" target="_blank">Facebook</a>
+            <% } %>
+
+            <% if (articleAuthor.twitter) { %>
+            <a class="-social-link" href="https://www.twitter.com/<%= articleAuthor.twitter %>" target="_blank">Twitter</a>
+            <% } %>
+
+            <% if (articleAuthor.instagram) { %>
+            <a class="-social-link" href="https://www.instagram.com/<%= articleAuthor.instagram %>" target="_blank">Instagram</a>
+            <% } %>
+
+            <% if (articleAuthor.linkedin) { %>
+            <a class="-social-link" href="https://linkedin.com/in/<%= articleAuthor.linkedin %>" target="_blank">LinkedIn</a>
+            <% } %>
+          </div>
+        </div>
+      </div> <!-- end author-section -->
+
+    </div>
+
+    <footer>
+      <div class="-social-icons">
+        <a class="-icon-facebook" href="https://www.facebook.com/Shine-Text" target="_blank"></a>
+        <a class="-icon-instagram" href="https://instagram.com/ShineText" target="_blank"></a>
+        <a class="-icon-twitter" href="https://twitter.com/ShineText" target="_blank"></a>
+      </div>
+      <div class="page-links">
+        <a href="/">Get Life Advice</a>
+        <a href="http://www.shinetext.com/referrals">Tell Friends</a>
+        <a href="http://www.shinetext.com/squad">Squad</a>
+        <a href="http://www.shinetext.com/faq">FAQ</a>
+        <a href="http://www.shinetext.com/privacy-policy">Privacy Policy</a>
+        <a href="http://www.shinetext.com/terms-of-service">Terms of Service</a>
+      </div>
+    </footer>
+  </div> <!-- end main container-fluid -->
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
+  <script type="text/javascript">
+  var s = skrollr.init();
+  if (s.isMobile()) { // but only on non-mobile devices
+    s.destroy();
+  }
+  </script>
+</body>
+</html>

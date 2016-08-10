@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ## Compile the less files to css
+mkdir _tmp
 ./compile.sh
 
 ## Get the bucket name from the arguments
@@ -24,7 +25,7 @@ else
 fi
 
 ## Compile the advice-home template
-node compile-advice-home.js
+node deploy-scripts/compile-advice-home.js
 
 ## Deploy to S3
 aws s3 cp _tmp/styles.css "s3://$BUCKET/styles.css"

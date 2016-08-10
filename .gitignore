@@ -2,5 +2,6 @@ _tmp/
 node_modules/
 
 ## Example html files generated from example data to help with dev
+example-pages/example-advice-home.html
 example-pages/example-article.html
 example-pages/example-author.html

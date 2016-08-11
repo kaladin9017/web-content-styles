@@ -22,6 +22,7 @@ const articleData = {
   articleAuthor: articleObj.author,
   articleBody: marked(articleObj.body['en-US']),
   articleDate: formatDisplayDate(new Date(articleObj.date['en-US'])),
+  articleDescription: articleObj.description ? articleObj.description['en-US'] : undefined,
   articleHeaderPhoto: articleObj.headerPhoto ? `https:${articleObj.headerPhoto.file.url}` : undefined,
   articleTags: articleObj.tags['en-US'],
   articleTitle: articleObj.title['en-US'],

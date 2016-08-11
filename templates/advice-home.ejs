@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Get Life Advice | Shine Text</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Read up on work, life and daily happiness advice to make you your best self today." />
+
+  <meta property="og:url" content="http://advice.shinetext.com/" />
+  <meta property="og:title" content="Get Life Advice | Shine" />
+  <meta property="og:description" content="Read up on work, life and daily happiness advice to make you your best self today." />
+  <meta property="og:site_name" content="Shine" />
+  <meta property="og:image" content="https://images.contentful.com/awpxl2koull4/FFhnW3pbga4qmCOM24kmc/8c718dac9a5357db86c55b637461f4f3/Shine-logo-web.png" />
+
+  <link href="https://fonts.googleapis.com/css?family=Caveat+Brush" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+  <link href="<%= css %>" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-68971267-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</head>
+<body id="advice-home">
+  <div class="navbar">
+    <a href="http://www.shinetext.com">
+      <img class="shine-logo" src="https://images.contentful.com/awpxl2koull4/FFhnW3pbga4qmCOM24kmc/8c718dac9a5357db86c55b637461f4f3/Shine-logo-web.png?w=100">
+    </a>
+
+    <div class="navbar-links-container">
+        <div class="navbar-links"><a href="/">Get Life Advice</a></div>
+        <div class="navbar-links"><a href="http://www.shinetext.com/referrals">Tell Friends</a></div>
+        <div class="navbar-links"><a href="http://www.shinetext.com/squad">Squad</a></div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+
+    <div class="row">
+      <div id="recent-posts-title" class="col-xs-offset-1 col-md-offset-2">
+        <div class="recent-posts-icon"></div>
+        <h2>Recent Posts</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div id="recent-articles" class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="-social-icons">
+      <a class="-icon-facebook" href="https://www.facebook.com/Shine-Text" target="_blank"></a>
+      <a class="-icon-instagram" href="https://instagram.com/ShineText" target="_blank"></a>
+      <a class="-icon-twitter" href="https://twitter.com/ShineText" target="_blank"></a>
+    </div>
+    <div class="page-links">
+      <a href="/">Get Life Advice</a>
+      <a href="http://www.shinetext.com/referrals">Tell Friends</a>
+      <a href="http://www.shinetext.com/squad">Squad</a>
+      <a href="http://www.shinetext.com/faq">FAQ</a>
+      <a href="http://www.shinetext.com/privacy-policy">Privacy Policy</a>
+      <a href="http://www.shinetext.com/terms-of-service">Terms of Service</a>
+    </div>
+  </footer>
+
+  <!-- Templates : Maybe there's a better way to do this?  ¯\_(ツ)_/¯ -->
+  <script id="article-preview-template" type="text/template">
+    <div class="article-preview col-xs-12 col-sm-4">
+      <a href="<?= article.urlPath ?>">
+        <div class="article-photo">
+          <img src="<?= article.photo ?>">
+        </div>
+        <div class="author-photo">
+          <img src="<?= author.photo ?>">
+        </div>
+        <div class="article-preview-text">
+          <div class="article-title"><?= article.title ?></div>
+          <div class="author-name">By <?= author.name ?></div>
+        </div>
+      </a>
+    </div>
+  </script>
+
+  <script>
+  var articlesJsonUrl = '<%= articlesJsonUrl %>';
+  </script>
+  <script src="<%= jsPath %>/ejs.min.js"></script>
+  <script src="<%= jsPath %>/shine.js"></script>
+</body>
+</html>

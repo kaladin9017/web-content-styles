@@ -1,7 +1,13 @@
+## Configure the VM
+machine:
+  node:
+    version: 5.5.0
+
 ## Setup dependencies
 dependencies:
   pre:
     - sudo pip install awscli
+    - npm install -g ejs
     - npm install -g less
     - npm install -g mocha
 

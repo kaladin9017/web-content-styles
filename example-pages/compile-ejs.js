@@ -9,6 +9,9 @@ const ejs = require('ejs');
 const fs = require('fs');
 const marked = require('marked');
 
+/////
+// Compile example article template from example data
+/////
 const articleJson = fs.readFileSync('article-data.json', 'utf-8');
 const articleObj = JSON.parse(articleJson);
 if (articleObj.author && articleObj.author.bio) {
@@ -19,6 +22,7 @@ const articleData = {
   articleAuthor: articleObj.author,
   articleBody: marked(articleObj.body['en-US']),
   articleDate: formatDisplayDate(new Date(articleObj.date['en-US'])),
+  articleDescription: articleObj.description ? articleObj.description['en-US'] : undefined,
   articleHeaderPhoto: articleObj.headerPhoto ? `https:${articleObj.headerPhoto.file.url}` : undefined,
   articleTags: articleObj.tags['en-US'],
   articleTitle: articleObj.title['en-US'],
@@ -29,6 +33,9 @@ const articleData = {
 
 compile('../templates/article.ejs', 'example-article.html', articleData);
 
+/////
+// Compile example author template from example data
+/////
 const authorJson = fs.readFileSync('author-data.json', 'utf-8');
 const authorObj = JSON.parse(authorJson);
 
@@ -44,6 +51,17 @@ const authorData = {
 };
 
 compile('../templates/author.ejs', 'example-author.html', authorData);
+
+/////
+// Compile example advice home template
+/////
+const adviceData = {
+  css: '../_tmp/styles.css',
+  jsPath: '../js',
+  articlesJsonUrl: 'https://advice.shinetext.com/articles/all.json', // <---- change this to adjust test content used
+};
+
+compile('../templates/advice-home.ejs', 'example-advice-home.html', adviceData);
 
 process.exit();
 

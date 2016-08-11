@@ -5,10 +5,11 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="<% if (typeof articleDescription !== 'undefined') { %><%= articleDescription %><% } else { %>Read up on work, life and daily happiness advice to make you your best self today.<% } %>" />
 
   <meta property="og:url" content="http://advice.shinetext.com/<%= articleUrlPath %>" />
-  <meta property="og:title" content="<%if (typeof articleTitle !== 'undefined') {%><%= articleTitle %> | <% } %>Shine" />
-  <meta property="og:description" content="Daily tips for self-fulfillment texted to you every morning." />
+  <meta property="og:title" content="<% if (typeof articleTitle !== 'undefined') { %><%= articleTitle %> | <% } %>Shine" />
+  <meta property="og:description" content="Read up on work, life and daily happiness advice to make you your best self today." />
   <meta property="og:site_name" content="Shine" />
   <meta property="og:image" content="<% if (typeof articleHeaderPhoto !== 'undefined') { %><%= articleHeaderPhoto %><% } else { %>https://images.contentful.com/awpxl2koull4/FFhnW3pbga4qmCOM24kmc/8c718dac9a5357db86c55b637461f4f3/Shine-logo-web.png<% } %>" />
 
@@ -19,6 +20,17 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
   <link href="<%= css %>" rel="stylesheet">
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-68971267-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
 </head>
 <body>
   <div class="navbar">
@@ -135,7 +147,9 @@
 
     </div>
 
-    <footer>
+    <footer
+      data-bottom-top="transform: translate3d(0px,50%,0px)"
+      data-bottom-bottom="transform: translate3d(0px,0%,0px)">>
       <div class="-social-icons">
         <a class="-icon-facebook" href="https://www.facebook.com/Shine-Text" target="_blank"></a>
         <a class="-icon-instagram" href="https://instagram.com/ShineText" target="_blank"></a>

@@ -1,0 +1,66 @@
+#recent-posts-title {
+  h2 {
+    .font-karla-bold;
+
+    font-size: @font-size-advice-home-subtitle;
+    text-transform: uppercase;
+  }
+
+  .recent-posts-icon {
+    background-image: url("https://images.contentful.com/awpxl2koull4/6gyEO27O7KAQya6Yk0Yk4i/20e6c7af00b16a998c1c90ae61c305c5/recent-posts-icon.png?w=35&h=35");
+    background-repeat: no-repeat;
+    float: left;
+    margin: 0 @margin-sm;
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.article-preview {
+  margin: @margin-sm 0;
+
+  a {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+  }
+
+  .article-photo {
+    img {
+      width: 100%;
+    }
+  }
+
+  .author-photo {
+    left: 50%;
+    margin-left: -30px;
+    margin-top: -30px;
+    position: absolute;
+
+    img {
+      border: 5px solid white;
+      border-radius: 50%;
+      height: 60px;
+      width: 60px;
+    }
+  }
+
+  .article-preview-text {
+    background-color: @color-article-preview-background;
+    padding: @margin-md @margin-sm @margin-sm @margin-sm;
+    text-align: center;
+
+    .author-name {
+      .font-karla;
+
+      font-size: @font-size-article-preview-normal;
+    }
+
+    .article-title {
+      .font-karla-bold;
+
+      font-size: @font-size-article-preview-title;
+      margin-bottom: @margin-xs;
+    }
+  }
+}

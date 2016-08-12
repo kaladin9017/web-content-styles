@@ -13,10 +13,23 @@
 }
 
 #recent-articles {
-  min-height: 380px;
+  margin-left: 10%;
+  min-height: @article-preview-height;
+  width: 80%;
+
+  @media (max-width: @screen-md-max) {
+    width: 90%;
+    margin-left: 5%;
+  }
 }
 
 #recent-posts-title {
+  margin-left: 10%;
+
+  @media (max-width: @screen-md-max) {
+    margin-left: 5%;
+  }
+
   h2 {
     .font-karla-bold;
 
@@ -48,6 +61,8 @@
 
   .article-photo {
     img {
+      height: @article-preview-height / 2;
+      object-fit: cover;
       width: 100%;
     }
   }
@@ -68,6 +83,7 @@
 
   .article-preview-text {
     background-color: @color-article-preview-background;
+    height: @article-preview-height / 2;
     padding: @margin-md @margin-sm @margin-sm @margin-sm;
     text-align: center;
 
@@ -82,6 +98,10 @@
 
       font-size: @font-size-article-preview-title;
       margin-bottom: @margin-xs;
+
+      @media (max-width: @screen-md-max) {
+        font-size: @font-size-article-preview-title-md;
+      }
     }
   }
 }

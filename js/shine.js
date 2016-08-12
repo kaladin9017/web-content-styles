@@ -32,6 +32,9 @@
         // Add content to the page
         $('#recent-articles').append(html);
       }
+
+      // Now that articles are in place, can enable the parallax scrolling
+      refreshSkrollr();
     },
     dataType: 'json',
   });
@@ -69,3 +72,23 @@
   });
 
 })();
+
+/**
+ * Initialize/refresh skrollr for when parallax elements get added to the DOM.
+ */
+var skrollrInitialized = false;
+var skrollrIsMobile = false;
+function refreshSkrollr() {
+  if (! skrollrInitialized) {
+    skrollrInitialized = true;
+
+    var s = skrollr.init();
+    if (s.isMobile()) {
+      skrollrIsMobile = true;
+      s.destroy();
+    }
+  }
+  else if (! skrollrIsMobile) {
+    skrollr.refresh();
+  }
+}

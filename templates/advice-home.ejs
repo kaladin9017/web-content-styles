@@ -79,7 +79,9 @@
 
   <!-- Templates : Maybe there's a better way to do this?  ¯\_(ツ)_/¯ -->
   <script id="article-preview-template" type="text/template">
-    <div class="article-preview col-xs-12 col-sm-4">
+    <div class="article-preview col-xs-12 col-sm-4"
+      data-bottom-top="transform: translate3d(0px,30%,0px)"
+      data--100-bottom-bottom="transform: translate3d(0px,0%,0px)">
       <a href="<?= article.urlPath ?>">
         <div class="article-photo">
           <img src="<?= article.photo ?>">
@@ -118,6 +120,7 @@
     </a>
   </script>
 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
   <script>
   var articlesJsonUrl = '<%= articlesJsonUrl %>';
   var featuredJsonUrl = '<%= featuredJsonUrl %>';

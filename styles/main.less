@@ -163,7 +163,12 @@ header {
     .font-blockquote;
 
     border-left: 0;
+    font-size: @font-size-article-blockquote;
     padding: (@margin-md+@margin-sm) @margin-sm;
+
+    @media (max-width: @screen-xs-max) {
+      font-size: @font-size-article-blockquote-xs;
+    }
 
     p {
       margin: 0 @margin-md;

@@ -58,7 +58,8 @@ compile('../templates/author.ejs', 'example-author.html', authorData);
 const adviceData = {
   css: '../_tmp/styles.css',
   jsPath: '../js',
-  articlesJsonUrl: 'https://advice.shinetext.com/articles/all.json', // <---- change this to adjust test content used
+  articlesJsonUrl: 'http://advice.shinetext.com/articles/all.json', // <---- change this to adjust test content used
+  featuredJsonUrl: 'http://advice.shinetext.com/articles/featured.json', // <---- change this to adjust test content used
 };
 
 compile('../templates/advice-home.ejs', 'example-advice-home.html', adviceData);

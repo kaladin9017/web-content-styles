@@ -41,26 +41,24 @@
     </a>
 
     <div class="navbar-links-container">
-        <div class="navbar-links"><a href="/">Get Life Advice</a></div>
-        <div class="navbar-links"><a href="http://www.shinetext.com/referrals">Tell Friends</a></div>
-        <div class="navbar-links"><a href="http://www.shinetext.com/squad">Squad</a></div>
+      <div class="navbar-links"><a href="/">Get Advice</a></div>
+      <div class="navbar-links"><a href="http://www.shinetext.com/referrals">Invite Friends</a></div>
+      <div class="navbar-links"><a href="http://www.shinetext.com/squad">The Squad</a></div>
     </div>
   </div>
 
+  <div id="featured-container"></div>
+
   <div class="container-fluid">
-
-
     <div class="row">
-      <div id="recent-posts-title" class="col-xs-offset-1 col-md-offset-2">
+      <div id="recent-posts-title">
         <div class="recent-posts-icon"></div>
         <h2>Recent Posts</h2>
       </div>
     </div>
     <div class="row">
-      <div id="recent-articles" class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
-      </div>
+      <div id="recent-articles"></div>
     </div>
-
   </div>
 
   <footer>
@@ -70,9 +68,9 @@
       <a class="-icon-twitter" href="https://twitter.com/ShineText" target="_blank"></a>
     </div>
     <div class="page-links">
-      <a href="/">Get Life Advice</a>
-      <a href="http://www.shinetext.com/referrals">Tell Friends</a>
-      <a href="http://www.shinetext.com/squad">Squad</a>
+      <a href="/">Get Advice</a>
+      <a href="http://www.shinetext.com/referrals">Invite Friends</a>
+      <a href="http://www.shinetext.com/squad">The Squad</a>
       <a href="http://www.shinetext.com/faq">FAQ</a>
       <a href="http://www.shinetext.com/privacy-policy">Privacy Policy</a>
       <a href="http://www.shinetext.com/terms-of-service">Terms of Service</a>
@@ -81,7 +79,9 @@
 
   <!-- Templates : Maybe there's a better way to do this?  ¯\_(ツ)_/¯ -->
   <script id="article-preview-template" type="text/template">
-    <div class="article-preview col-xs-12 col-sm-4">
+    <div class="article-preview col-xs-12 col-sm-4"
+      data-bottom-top="transform: translate3d(0px,30%,0px)"
+      data--100-bottom-bottom="transform: translate3d(0px,0%,0px)">
       <a href="<?= article.urlPath ?>">
         <div class="article-photo">
           <img src="<?= article.photo ?>">
@@ -96,9 +96,34 @@
       </a>
     </div>
   </script>
+  <script id="featured-item-template" type="text/template">
+    <a href="<?= article.urlPath ?>">
+      <div class="featured-preview">
+        <div class="article-photo" style="background-image: url(<?= article.photo ?>);"></div>
+        <div class="featured-preview-text">
+          <div>
+            <div class="featured-category-icon"></div>
+            <div class="featured-category">Shine Spotlight</div>
+          </div>
+          <div class="article-container">
+            <div class="article-title"><?= article.title ?></div>
+            <div class="article-description"><?= article.description ?></div>
+          </div>
+          <div class="author-container">
+            <div class="author-photo">
+              <img src="<?= author.photo ?>">
+            </div>
+            <div class="author-name">By <?= author.name ?></div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </script>
 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
   <script>
   var articlesJsonUrl = '<%= articlesJsonUrl %>';
+  var featuredJsonUrl = '<%= featuredJsonUrl %>';
   </script>
   <script src="<%= jsPath %>/ejs.min.js"></script>
   <script src="<%= jsPath %>/shine.js"></script>

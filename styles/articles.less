@@ -1,4 +1,35 @@
+#featured-container {
+  background: black;
+  color: white;
+  height: @featured-container-height;
+  margin-bottom: @margin-lg;
+  width: 100%;
+
+  a {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+  }
+}
+
+#recent-articles {
+  margin-left: 10%;
+  min-height: @article-preview-height;
+  width: 80%;
+
+  @media (max-width: @screen-md-max) {
+    width: 90%;
+    margin-left: 5%;
+  }
+}
+
 #recent-posts-title {
+  margin-left: 10%;
+
+  @media (max-width: @screen-md-max) {
+    margin-left: 5%;
+  }
+
   h2 {
     .font-karla-bold;
 
@@ -16,6 +47,9 @@
   }
 }
 
+/**
+ * Smaller preview display of an article
+ */
 .article-preview {
   margin: @margin-sm 0;
 
@@ -27,6 +61,8 @@
 
   .article-photo {
     img {
+      height: @article-preview-height / 2;
+      object-fit: cover;
       width: 100%;
     }
   }
@@ -47,6 +83,7 @@
 
   .article-preview-text {
     background-color: @color-article-preview-background;
+    height: @article-preview-height / 2;
     padding: @margin-md @margin-sm @margin-sm @margin-sm;
     text-align: center;
 
@@ -61,6 +98,149 @@
 
       font-size: @font-size-article-preview-title;
       margin-bottom: @margin-xs;
+
+      @media (max-width: @screen-md-max) {
+        font-size: @font-size-article-preview-title-md;
+      }
+    }
+  }
+}
+
+/**
+ * Featured section on the main advice homepage
+ */
+.featured-preview {
+  .article-photo {
+    background-position: center;
+    background-size: cover;
+    float: left;
+    position: absolute;
+    width: 60%;
+    height: @featured-container-height;
+
+    @media (max-width: @screen-xs-max) {
+      float: none;
+      position: relative;
+      width: 100%;
+      height: @featured-container-height / 2;
+    }
+  }
+
+  .featured-preview-text {
+    left: 60%;
+    padding: @margin-lg;
+    position: relative;
+    width: 40%;
+
+    @media (max-width: @screen-md-max) {
+      padding: @margin-md;
+    }
+
+    @media (max-width: @screen-xs-max) {
+      left: 0;
+      padding: @margin-sm;
+      text-align: center;
+      width: 100%;
+    }
+
+    .article-container {
+      margin: @margin-md 0;
+
+      @media (max-width: @screen-sm-max) {
+        margin: @margin-sm 0;
+      }
+
+      @media (max-width: @screen-sm-max) {
+        margin: @margin-xs 0;
+      }
+    }
+
+    .article-description {
+      .font-karla;
+
+      font-size: @font-size-normal;
+
+      @media (max-width: @screen-xs-max) {
+        font-size: @font-size-featured-normal-xs;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    .article-title {
+      .font-karla-bold;
+
+      font-size: @font-size-header;
+      margin-bottom: @margin-xs;
+
+      @media (max-width: @screen-sm-max) {
+        font-size:  @font-size-featured-title-sm;
+      }
+    }
+
+    .author-container {
+      .font-karla;
+
+      font-size: @font-size-subtitle;
+
+      @media (max-width: @screen-sm-max) {
+        font-size:  @font-size-featured-subtitle-sm;
+      }
+
+      @media (max-width: @screen-xs-max) {
+        font-size: @font-size-featured-subtitle-xs;
+      }
+
+      .author-name {
+        position: relative;
+        top: (@featured-author-photo-size / 2) - (@font-size-subtitle / 2);
+      }
+
+      .author-photo {
+        float: left;
+        left: (-@margin-lg / 2);
+        position: absolute;
+
+        img {
+          border: 5px solid white;
+          border-radius: 50%;
+          height: @featured-author-photo-size;
+          width: @featured-author-photo-size;
+        }
+
+        @media (max-width: @screen-md-max) {
+          display: none;
+        }
+      }
+    }
+
+    .featured-category {
+      .font-karla-bold;
+
+      font-size: @font-size-subtitle;
+      text-transform: uppercase;
+
+      @media (max-width: @screen-xs-max) {
+        display: inline;
+        font-size: @font-size-featured-subtitle-xs;
+        position: relative;
+        top: -10px;
+      }
+    }
+
+    .featured-category-icon {
+      background-image: url("https://images.contentful.com/awpxl2koull4/4LPOwGogeAawiQOCS8WuEi/3c120f45ff854e104340bd44e0fc6a09/shine-spotlight-icon.png?w=35&h=35");
+      background-repeat: no-repeat;
+      float: left;
+      margin-right: @margin-sm;
+      width: 35px;
+      height: 35px;
+
+      @media (max-width: @screen-xs-max) {
+        display: inline-block;
+        float: none;
+      }
     }
   }
 }

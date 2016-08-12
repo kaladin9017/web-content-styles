@@ -21,6 +21,7 @@ const data = {
   css: 'styles.css',
   jsPath: 'js',
   articlesJsonUrl: 'articles/all.json',
+  featuredJsonUrl: 'articles/featured.json',
 };
 
 // Render and write to file

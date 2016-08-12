@@ -47,9 +47,9 @@
     </div>
   </div>
 
+  <div id="featured-container"></div>
+
   <div class="container-fluid">
-
-
     <div class="row">
       <div id="recent-posts-title" class="col-xs-offset-1 col-md-offset-2">
         <div class="recent-posts-icon"></div>
@@ -60,7 +60,6 @@
       <div id="recent-articles" class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
       </div>
     </div>
-
   </div>
 
   <footer>
@@ -96,9 +95,33 @@
       </a>
     </div>
   </script>
+  <script id="featured-item-template" type="text/template">
+    <a href="<?= article.urlPath ?>">
+      <div class="featured-preview">
+        <div class="article-photo" style="background-image: url(<?= article.photo ?>);"></div>
+        <div class="featured-preview-text">
+          <div>
+            <div class="featured-category-icon"></div>
+            <div class="featured-category">Shine Spotlight</div>
+          </div>
+          <div class="article-container">
+            <div class="article-title"><?= article.title ?></div>
+            <div class="article-description"><?= article.description ?></div>
+          </div>
+          <div class="author-container">
+            <div class="author-photo">
+              <img src="<?= author.photo ?>">
+            </div>
+            <div class="author-name">By <?= author.name ?></div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </script>
 
   <script>
   var articlesJsonUrl = '<%= articlesJsonUrl %>';
+  var featuredJsonUrl = '<%= featuredJsonUrl %>';
   </script>
   <script src="<%= jsPath %>/ejs.min.js"></script>
   <script src="<%= jsPath %>/shine.js"></script>

@@ -36,4 +36,36 @@
     dataType: 'json',
   });
 
+  /**
+   * Get featured data to display.
+   */
+  $.get({
+    url: `${featuredJsonUrl}`,
+    data: null,
+    success: (data) => {
+      if (! data || data.length === 0) { return; }
+
+      const template = $('#featured-item-template').html();
+
+      // @todo For now just featuring one article. So if more are here, just ignore them.
+      const featuredData = {
+        article: {
+          description: data[0].description['en-US'],
+          photo: `http:${data[0].headerPhoto.file.url}?w=900`,
+          title: data[0].title['en-US'],
+          urlPath: data[0].urlPath,
+        },
+        author: {
+          photo: `http:${data[0].author.picture.file.url}?fit=thumb&w=100&h=100`,
+          name: data[0].author.name,
+        },
+      };
+
+      const html = ejs.render(template, featuredData, {delimiter: '?'});
+
+      $('#featured-container').append(html);
+    },
+    dataType: 'json',
+  });
+
 })();

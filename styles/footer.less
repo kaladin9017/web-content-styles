@@ -9,7 +9,44 @@ footer {
   clear: both; /* note: article footer is inside an absolute positioned div. need this to position correctly */
   font-size: @font-size-normal;
   margin-top: @margin-lg;
-  padding: @margin-md 0;
+
+  .footer-cta {
+    border-bottom: 2px solid white;
+    color: white;
+    padding: @margin-lg 0;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+    }
+
+    .cta-heading {
+      .font-karla-bold;
+
+      color: @color-primary;
+      font-size: @font-size-subtitle;
+      margin-bottom: @margin-xs;
+      text-transform: uppercase;
+    }
+
+    .cta-copy {
+      .font-karla;
+
+      font-size: @font-size-header;
+      margin-bottom: @margin-md;
+    }
+
+    .signup-button {
+      background: @color-primary;
+      border-radius: 5px;
+      color: black;
+      margin-left: 35%;
+      padding-bottom: @margin-xs;
+      padding-top: @margin-xs;
+      text-transform: uppercase;
+      width: 30%;
+    }
+  }
 
   .page-links {
     margin: @margin-md 0;
@@ -55,5 +92,9 @@ footer {
       background-image: url("https://images.contentful.com/awpxl2koull4/3NAOvCB3FK0qKA2QYSkEWa/1d8cff31c99583f395742574076c0c90/icon-twitter-footer.png");
       background-repeat: no-repeat;
     }
+  }
+
+  .social-and-footer-nav {
+    padding: @margin-md 0;
   }
 }

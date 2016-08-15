@@ -43,8 +43,8 @@
     float: right;
     font-size: @font-size-normal;
     left: -35px;
-    line-height: 42px;
     margin-right: 10%;
+    max-width: 40%;
     position: relative;
 
     @media (max-width: @screen-md-max) {
@@ -55,7 +55,12 @@
       display: block;
       float: none;
       left: 0;
-      margin-left: 35px + (@margin-sm * 2)
+      margin-left: 35px + (@margin-sm * 2);
+      max-width: 100%;
+    }
+
+    em {
+      font-style: italic;
     }
   }
 

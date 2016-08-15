@@ -164,7 +164,7 @@ header {
 
     border-left: 0;
     font-size: @font-size-article-blockquote;
-    padding: (@margin-md+@margin-sm) @margin-sm;
+    padding: @margin-md @margin-sm;
 
     @media (max-width: @screen-xs-max) {
       font-size: @font-size-article-blockquote-xs;
@@ -219,6 +219,16 @@ header {
   p {
     margin: @margin-sm 0;
   }
+
+  .dropcap {
+    .font-karla-bold;
+
+    float: left;
+    font-size: 68px;
+    line-height: 48px;
+    padding-top: 2px;
+    padding-right: 6px;
+  }
 }
 
 /**
@@ -254,7 +264,9 @@ header {
  * Author section below the article,
  */
 .author-section {
-  margin: @margin-lg 0;
+  border-top: 4px solid @color-primary;
+  margin-top: @margin-lg;
+  padding: @margin-lg 0;
 
   .-info-container {
     margin-left: 100px + @margin-md;

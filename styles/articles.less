@@ -2,7 +2,7 @@
   background: black;
   color: white;
   height: @featured-container-height;
-  margin-bottom: @margin-sm;
+  margin-bottom: @margin-md;
   width: 100%;
 
   a {
@@ -33,12 +33,34 @@
   h2 {
     .font-karla-bold;
 
+    display: inline;
     font-size: @font-size-advice-home-subtitle;
     text-transform: uppercase;
   }
 
+  .recent-posts-description {
+    display: inline-block;
+    float: right;
+    font-size: @font-size-normal;
+    left: -35px;
+    line-height: 42px;
+    margin-right: 10%;
+    position: relative;
+
+    @media (max-width: @screen-md-max) {
+      margin-right: 5%;
+    }
+
+    @media (max-width: @screen-xs-max) {
+      display: block;
+      float: none;
+      left: 0;
+      margin-left: 35px + (@margin-sm * 2)
+    }
+  }
+
   .recent-posts-icon {
-    background-image: url("https://images.contentful.com/awpxl2koull4/5VsQehUgAEGUiY2msmawWm/bb11ccea710c363f1f053ce2766ca451/lightning-bolt-reads-icon.png?w=35&h=35");
+    background-image: url("https://images.contentful.com/awpxl2koull4/4LPOwGogeAawiQOCS8WuEi/3c120f45ff854e104340bd44e0fc6a09/shine-spotlight-icon.png?w=35&h=35");
     background-repeat: no-repeat;
     float: left;
     margin: 0 @margin-sm;
@@ -237,7 +259,7 @@
     }
 
     .featured-category-icon {
-      background-image: url("https://images.contentful.com/awpxl2koull4/4LPOwGogeAawiQOCS8WuEi/3c120f45ff854e104340bd44e0fc6a09/shine-spotlight-icon.png?w=35&h=35");
+      background-image: url("https://images.contentful.com/awpxl2koull4/5VsQehUgAEGUiY2msmawWm/bb11ccea710c363f1f053ce2766ca451/lightning-bolt-reads-icon.png?w=35&h=35");
       background-repeat: no-repeat;
       float: left;
       margin-right: @margin-sm;

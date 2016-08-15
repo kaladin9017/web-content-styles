@@ -53,7 +53,8 @@
     <div class="row">
       <div id="recent-posts-title">
         <div class="recent-posts-icon"></div>
-        <h2>Recent Posts</h2>
+        <h2>Latest Articles</h2>
+        <div class="recent-posts-description">Read up on happy living</div>
       </div>
     </div>
     <div class="row">
@@ -88,8 +89,8 @@
   <!-- Templates : Maybe there's a better way to do this?  ¯\_(ツ)_/¯ -->
   <script id="article-preview-template" type="text/template">
     <div class="article-preview col-xs-12 col-sm-4"
-      data-bottom-top="transform: translate3d(0px,30%,0px)"
-      data--100-bottom-bottom="transform: translate3d(0px,0%,0px)">
+      data-100-bottom-top="transform: translate3d(0px,25%,0px)"
+      data-bottom-bottom="transform: translate3d(0px,0%,0px)">
       <a href="<?= article.urlPath ?>">
         <div class="article-photo">
           <img src="<?= article.photo ?>">
@@ -111,7 +112,7 @@
         <div class="featured-preview-text">
           <div>
             <div class="featured-category-icon"></div>
-            <div class="featured-category">Shine Spotlight</div>
+            <div class="featured-category">Hot Read of the Week</div>
           </div>
           <div class="article-container">
             <div class="article-title"><?= article.title ?></div>

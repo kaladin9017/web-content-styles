@@ -5,6 +5,15 @@ body {
 
   border-top: 4px solid @color-yellow;
   background: white;
+
+  a {
+    color: @color-yellow;
+  }
+
+  a:hover {
+    color: @color-article-body;
+    text-decoration: none;
+  }
 }
 
 /**
@@ -164,7 +173,7 @@ header {
 
     border-left: 0;
     font-size: @font-size-article-blockquote;
-    padding: (@margin-md+@margin-sm) @margin-sm;
+    padding: @margin-md @margin-sm;
 
     @media (max-width: @screen-xs-max) {
       font-size: @font-size-article-blockquote-xs;
@@ -176,7 +185,7 @@ header {
 
     p:before {
       content:"\A";
-      border-color: @color-primary transparent transparent transparent;
+      border-color: @color-yellow transparent transparent transparent;
       border-style: solid;
       border-width: 50px 200px 0 0;
       left: @margin-sm;
@@ -196,6 +205,11 @@ header {
     margin-left: 0;
   }
 
+  img {
+    max-height: 480px;
+    max-width: 100%;
+  }
+
   ol,ul {
     .font-caveat;
 
@@ -213,6 +227,16 @@ header {
 
   p {
     margin: @margin-sm 0;
+  }
+
+  .dropcap {
+    .font-karla-bold;
+
+    float: left;
+    font-size: 68px;
+    line-height: 48px;
+    padding-top: 2px;
+    padding-right: 6px;
   }
 }
 
@@ -249,7 +273,9 @@ header {
  * Author section below the article,
  */
 .author-section {
-  margin: @margin-lg 0;
+  border-top: 4px solid @color-yellow;
+  margin-top: @margin-lg;
+  padding: @margin-lg 0;
 
   .-info-container {
     margin-left: 100px + @margin-md;

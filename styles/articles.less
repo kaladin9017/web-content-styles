@@ -2,7 +2,7 @@
   background: black;
   color: white;
   height: @featured-container-height;
-  margin-bottom: @margin-lg;
+  margin-bottom: @margin-md;
   width: 100%;
 
   a {
@@ -33,12 +33,34 @@
   h2 {
     .font-karla-bold;
 
+    display: inline;
     font-size: @font-size-advice-home-subtitle;
     text-transform: uppercase;
   }
 
+  .recent-posts-description {
+    display: inline-block;
+    float: right;
+    font-size: @font-size-normal;
+    left: -35px;
+    line-height: 42px;
+    margin-right: 10%;
+    position: relative;
+
+    @media (max-width: @screen-md-max) {
+      margin-right: 5%;
+    }
+
+    @media (max-width: @screen-xs-max) {
+      display: block;
+      float: none;
+      left: 0;
+      margin-left: 35px + (@margin-sm * 2)
+    }
+  }
+
   .recent-posts-icon {
-    background-image: url("https://images.contentful.com/awpxl2koull4/6gyEO27O7KAQya6Yk0Yk4i/20e6c7af00b16a998c1c90ae61c305c5/recent-posts-icon.png?w=35&h=35");
+    background-image: url("https://images.contentful.com/awpxl2koull4/4LPOwGogeAawiQOCS8WuEi/3c120f45ff854e104340bd44e0fc6a09/shine-spotlight-icon.png?w=35&h=35");
     background-repeat: no-repeat;
     float: left;
     margin: 0 @margin-sm;
@@ -83,6 +105,7 @@
 
   .article-preview-text {
     background-color: @color-article-preview-background;
+    border-bottom: 4px solid @color-yellow;
     height: @article-preview-height / 2;
     padding: @margin-md @margin-sm @margin-sm @margin-sm;
     text-align: center;
@@ -128,7 +151,7 @@
 
   .featured-preview-text {
     left: 60%;
-    padding: @margin-lg;
+    padding: @margin-md @margin-lg;
     position: relative;
     width: 40%;
 
@@ -144,7 +167,7 @@
     }
 
     .article-container {
-      margin: @margin-md 0;
+      margin: @margin-sm 0;
 
       @media (max-width: @screen-sm-max) {
         margin: @margin-sm 0;
@@ -193,8 +216,14 @@
       }
 
       .author-name {
+        line-height: @font-size-subtitle;
         position: relative;
         top: (@featured-author-photo-size / 2) - (@font-size-subtitle / 2);
+
+        @media (max-width: @screen-xs-max) {
+          line-height: @font-size-featured-subtitle-xs;
+          top: @font-size-featured-subtitle-xs / 2;
+        }
       }
 
       .author-photo {
@@ -230,7 +259,7 @@
     }
 
     .featured-category-icon {
-      background-image: url("https://images.contentful.com/awpxl2koull4/4LPOwGogeAawiQOCS8WuEi/3c120f45ff854e104340bd44e0fc6a09/shine-spotlight-icon.png?w=35&h=35");
+      background-image: url("https://images.contentful.com/awpxl2koull4/5VsQehUgAEGUiY2msmawWm/bb11ccea710c363f1f053ce2766ca451/lightning-bolt-reads-icon.png?w=35&h=35");
       background-repeat: no-repeat;
       float: left;
       margin-right: @margin-sm;

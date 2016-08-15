@@ -1,4 +1,4 @@
-(function() {
+window.onload = function() {
 
   'use strict';
 
@@ -71,7 +71,7 @@
     dataType: 'json',
   });
 
-})();
+};
 
 /**
  * Initialize/refresh skrollr for when parallax elements get added to the DOM.

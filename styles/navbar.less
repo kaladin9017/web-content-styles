@@ -19,7 +19,7 @@
 
     display: block;
     float: right;
-    font-size: @font-size-normal;
+    font-size: 16px;
     margin-right: @margin-md;
     margin-top: -@font-size-normal / 2;
     position: absolute;
@@ -30,12 +30,39 @@
       display: inline;
       margin-left: @margin-md;
 
+      a {
+        position: relative;
+      }
+
       a:active,
       a:hover,
       a:link,
       a:visited {
         color: @color-navbar-links;
+        letter-spacing: 0.5px;
         text-decoration: none;
+      }
+
+      a:before {
+        background-color: @color-yellow;
+        bottom: -4px;
+        content: "";
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        -webkit-transition: all 0.25s ease 0s;
+        transition: all 0.25s ease 0s;
+      }
+
+      a:hover:before {
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+      }
+
+      a.nav-open:before {
+        transform: scaleX(1);
       }
     }
 

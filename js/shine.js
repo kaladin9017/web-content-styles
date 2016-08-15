@@ -1,94 +1,149 @@
-window.onload = function() {
+(function() {
 
-  'use strict';
+  // The number of articles to display at a time
+  var NUM_ARTICLES_DISPLAY_BATCH = 9;
 
-  /**
-   * Get article data to display.
-   */
-  $.get({
-    url: `${articlesJsonUrl}`,
-    data: null,
-    success: (data) => {
-      if (! data) { return; }
+  // Array of articles fetched from the server
+  var fetchedArticles = [];
 
-      const template = $('#article-preview-template').html();
-      for (let i = 0; i < data.length; i++) {
-        // Extract data and prep for rendering
-        const articleData = {
+  // Number of articles currently displayed in the view
+  var numDisplayedArticles = 0;
+
+  // Helpers for managing the skrollr lib
+  var skrollrInitialized = false;
+  var skrollrIsMobile = false;
+  var skrollrInstance;
+
+  window.onload = function() {
+
+    'use strict';
+
+    // Load more articles when the #read-more button is clicked
+    $('#read-more').click(loadMoreArticles);
+
+    // Load the initial batch of articles
+    loadMoreArticles();
+
+    /**
+     * Get featured data to display.
+     */
+    $.get({
+      url: `${featuredJsonUrl}`,
+      data: null,
+      success: (data) => {
+        if (! data || data.length === 0) { return; }
+
+        const template = $('#featured-item-template').html();
+
+        // @todo For now just featuring one article. So if more are here, just ignore them.
+        const featuredData = {
           article: {
-            photo: `http:${data[i].headerPhoto.file.url}?w=640`,
-            title: data[i].title['en-US'],
-            urlPath: data[i].urlPath,
+            description: data[0].description['en-US'],
+            photo: `http:${data[0].headerPhoto.file.url}?w=900`,
+            title: data[0].title['en-US'],
+            urlPath: data[0].urlPath,
           },
           author: {
-            name: data[i].author.name,
-            photo: `http:${data[i].author.picture.file.url}?fit=thumb&w=100&h=100`,
+            photo: `http:${data[0].author.picture.file.url}?fit=thumb&w=100&h=100`,
+            name: data[0].author.name,
           },
         };
 
-        // Render template with data
-        const html = ejs.render(template, articleData, {delimiter: '?'});
+        const html = ejs.render(template, featuredData, {delimiter: '?'});
 
-        // Add content to the page
-        $('#recent-articles').append(html);
-      }
+        $('#featured-container').append(html);
+      },
+      dataType: 'json',
+    });
 
-      // Now that articles are in place, can enable the parallax scrolling
-      refreshSkrollr();
-    },
-    dataType: 'json',
-  });
+  };
 
   /**
-   * Get featured data to display.
+   * Initialize/refresh skrollr for when parallax elements get added to the DOM.
    */
-  $.get({
-    url: `${featuredJsonUrl}`,
-    data: null,
-    success: (data) => {
-      if (! data || data.length === 0) { return; }
+  function refreshSkrollr() {
+    if (! skrollrInitialized) {
+      skrollrInitialized = true;
 
-      const template = $('#featured-item-template').html();
+      skrollrInstance = skrollr.init();
+      if (skrollrInstance.isMobile()) {
+        skrollrIsMobile = true;
+        skrollrInstance.destroy();
+      }
+    }
+    else if (! skrollrIsMobile) {
+      skrollrInstance.refresh();
+    }
+  }
 
-      // @todo For now just featuring one article. So if more are here, just ignore them.
-      const featuredData = {
+  /**
+   * Fetches and displays articles to display. If we've already fetched the
+   * json of articles, then display the next round of articles.
+   */
+  function loadMoreArticles() {
+    if (! fetchedArticles || fetchedArticles.length == 0) {
+      $.get({
+        url: `${articlesJsonUrl}`,
+        data: null,
+        success: onGetArticles,
+        dataType: 'json',
+      });
+    }
+    else {
+      displayMoreArticles();
+    }
+  }
+
+  /**
+   * Callback when articles are fetched from the server. Cache to a local array
+   * and display a batch of articles.
+   */
+  function onGetArticles(data) {
+    if (! data) { return; }
+
+    fetchedArticles = data;
+
+    displayMoreArticles();
+  }
+
+  /**
+   * Starting from the current number of displayed articles, display
+   * NUM_ARTICLES_DISPLAY_BATCH more to the view.
+   */
+  function displayMoreArticles() {
+    const template = $('#article-preview-template').html();
+
+    let startIndex = numDisplayedArticles;
+    for (let i = startIndex; i < startIndex + NUM_ARTICLES_DISPLAY_BATCH && i < fetchedArticles.length; i++) {
+      // Extract data and prep for rendering
+      const articleData = {
         article: {
-          description: data[0].description['en-US'],
-          photo: `http:${data[0].headerPhoto.file.url}?w=900`,
-          title: data[0].title['en-US'],
-          urlPath: data[0].urlPath,
+          photo: `http:${fetchedArticles[i].headerPhoto.file.url}?w=640`,
+          title: fetchedArticles[i].title['en-US'],
+          urlPath: fetchedArticles[i].urlPath,
         },
         author: {
-          photo: `http:${data[0].author.picture.file.url}?fit=thumb&w=100&h=100`,
-          name: data[0].author.name,
+          name: fetchedArticles[i].author.name,
+          photo: `http:${fetchedArticles[i].author.picture.file.url}?fit=thumb&w=100&h=100`,
         },
       };
 
-      const html = ejs.render(template, featuredData, {delimiter: '?'});
+      // Render template with data
+      const html = ejs.render(template, articleData, {delimiter: '?'});
 
-      $('#featured-container').append(html);
-    },
-    dataType: 'json',
-  });
+      // Add content to the page
+      $('#recent-articles').append(html).children(':last').hide().fadeIn(500);
 
-};
+      numDisplayedArticles++
+    }
 
-/**
- * Initialize/refresh skrollr for when parallax elements get added to the DOM.
- */
-var skrollrInitialized = false;
-var skrollrIsMobile = false;
-function refreshSkrollr() {
-  if (! skrollrInitialized) {
-    skrollrInitialized = true;
+    // Now that articles are in place, can enable the parallax scrolling
+    refreshSkrollr();
 
-    var s = skrollr.init();
-    if (s.isMobile()) {
-      skrollrIsMobile = true;
-      s.destroy();
+    // If there are no more articles, hide the "Read More" button
+    if (numDisplayedArticles == fetchedArticles.length) {
+      $('#read-more').hide();
     }
   }
-  else if (! skrollrIsMobile) {
-    skrollr.refresh();
-  }
-}
+
+})();

@@ -30,6 +30,12 @@
   width: 300px;
 }
 
+#read-more.disabled {
+  background-color: @color-button-disabled-background;
+  color: @color-button-disabled-text;
+  cursor: default;
+}
+
 #recent-articles {
   margin-left: 10%;
   min-height: @article-preview-height;
@@ -54,6 +60,10 @@
     display: inline;
     font-size: @font-size-advice-home-subtitle;
     text-transform: uppercase;
+
+    @media (max-width: @screen-sm-max) {
+      font-size: @font-size-advice-home-subtitle-sm;
+    }
   }
 
   .recent-posts-description {
@@ -74,6 +84,7 @@
       float: none;
       left: 0;
       margin-left: 35px + (@margin-sm * 2);
+      margin-top: @margin-xs;
       max-width: 100%;
     }
 
@@ -243,7 +254,12 @@
         position: relative;
         top: (@featured-author-photo-size / 2) - (@font-size-subtitle / 2);
 
+        @media (max-width: @screen-sm-max) {
+          font-size: @font-size-featured-subtitle-sm;
+        }
+
         @media (max-width: @screen-xs-max) {
+          font-size: @font-size-featured-subtitle-xs;
           line-height: @font-size-featured-subtitle-xs;
           top: @font-size-featured-subtitle-xs / 2;
         }
@@ -273,6 +289,10 @@
       font-size: @font-size-subtitle;
       text-transform: uppercase;
 
+      @media (max-width: @screen-sm-max) {
+        font-size: @font-size-featured-subtitle-sm;
+      }
+
       @media (max-width: @screen-xs-max) {
         display: inline;
         font-size: @font-size-featured-subtitle-xs;
@@ -285,13 +305,14 @@
       background-image: url("https://images.contentful.com/awpxl2koull4/5VsQehUgAEGUiY2msmawWm/bb11ccea710c363f1f053ce2766ca451/lightning-bolt-reads-icon.png?w=35&h=35");
       background-repeat: no-repeat;
       float: left;
-      margin-right: @margin-sm;
+      margin-right: @margin-xs;
       width: 35px;
       height: 35px;
 
       @media (max-width: @screen-xs-max) {
         display: inline-block;
         float: none;
+        margin-right: 0;
       }
     }
   }

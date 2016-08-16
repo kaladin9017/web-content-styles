@@ -3,6 +3,9 @@
   // The number of articles to display at a time
   var NUM_ARTICLES_DISPLAY_BATCH = 9;
 
+  // Message to replace the "Read More" button when we reach the end of available articles
+  var READ_MORE_END_MESSAGE = 'Check back later for more';
+
   // Array of articles fetched from the server
   var fetchedArticles = [];
 
@@ -140,9 +143,10 @@
     // Now that articles are in place, can enable the parallax scrolling
     refreshSkrollr();
 
-    // If there are no more articles, hide the "Read More" button
+    // If there are no more articles, render the "Read More" button disabled
     if (numDisplayedArticles == fetchedArticles.length) {
-      $('#read-more').hide();
+      $('#read-more').addClass('disabled');
+      $('#read-more').text(READ_MORE_END_MESSAGE);
     }
   }
 

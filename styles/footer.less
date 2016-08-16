@@ -52,10 +52,7 @@ footer {
     margin: @margin-md 0;
     text-align: center;
 
-    a:active,
-    a:hover,
-    a:link,
-    a:visited {
+    a {
       color: @color-footer;
       display: inline-block;
       margin: @margin-xs;
@@ -64,6 +61,10 @@ footer {
       @media (max-width: @screen-xs-max) {
         display: block;
       }
+    }
+
+    a:hover {
+      color: @color-yellow;
     }
   }
 

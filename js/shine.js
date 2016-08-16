@@ -1,10 +1,12 @@
+'use strict';
+
 (function() {
 
   // The number of articles to display at a time
   var NUM_ARTICLES_DISPLAY_BATCH = 9;
 
   // Message to replace the "Read More" button when we reach the end of available articles
-  var READ_MORE_END_MESSAGE = 'Check back later for more';
+  var READ_MORE_END_MESSAGE = ':)';
 
   // Array of articles fetched from the server
   var fetchedArticles = [];
@@ -19,8 +21,6 @@
 
   window.onload = function() {
 
-    'use strict';
-
     // Load more articles when the #read-more button is clicked
     $('#read-more').click(loadMoreArticles);
 
@@ -33,13 +33,17 @@
     $.get({
       url: `${featuredJsonUrl}`,
       data: null,
-      success: (data) => {
+      success: function (data) {
+        var featuredData;
+        var renderedHtml;
+        var template;
+
         if (! data || data.length === 0) { return; }
 
-        const template = $('#featured-item-template').html();
+        template = $('#featured-item-template').html();
 
         // @todo For now just featuring one article. So if more are here, just ignore them.
-        const featuredData = {
+        featuredData = {
           article: {
             description: data[0].description['en-US'],
             photo: `http:${data[0].headerPhoto.file.url}?w=900`,
@@ -52,9 +56,9 @@
           },
         };
 
-        const html = ejs.render(template, featuredData, {delimiter: '?'});
+        renderedHtml = ejs.render(template, featuredData, {delimiter: '?'});
 
-        $('#featured-container').append(html);
+        $('#featured-container').append(renderedHtml);
       },
       dataType: 'json',
     });
@@ -114,12 +118,18 @@
    * NUM_ARTICLES_DISPLAY_BATCH more to the view.
    */
   function displayMoreArticles() {
-    const template = $('#article-preview-template').html();
+    var articleData;
+    var renderedHtml;
+    var startIndex;
+    var template;
+    var i;
 
-    let startIndex = numDisplayedArticles;
-    for (let i = startIndex; i < startIndex + NUM_ARTICLES_DISPLAY_BATCH && i < fetchedArticles.length; i++) {
+    template = $('#article-preview-template').html();
+
+    startIndex = numDisplayedArticles;
+    for (i = startIndex; i < startIndex + NUM_ARTICLES_DISPLAY_BATCH && i < fetchedArticles.length; i++) {
       // Extract data and prep for rendering
-      const articleData = {
+      articleData = {
         article: {
           photo: `http:${fetchedArticles[i].headerPhoto.file.url}?w=640`,
           title: fetchedArticles[i].title['en-US'],
@@ -132,10 +142,10 @@
       };
 
       // Render template with data
-      const html = ejs.render(template, articleData, {delimiter: '?'});
+      renderedHtml = ejs.render(template, articleData, {delimiter: '?'});
 
       // Add content to the page
-      $('#recent-articles').append(html).children(':last').hide().fadeIn(500);
+      $('#recent-articles').append(renderedHtml).children(':last').hide().fadeIn(500);
 
       numDisplayedArticles++
     }

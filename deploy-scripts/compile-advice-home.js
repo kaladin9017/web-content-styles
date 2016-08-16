@@ -19,7 +19,6 @@ const template = fs.readFileSync(templateFilename, 'utf-8');
 // Template data
 const data = {
   css: 'styles.css',
-  jsPath: 'js',
   articlesJsonUrl: 'articles/all.json',
   featuredJsonUrl: 'articles/featured.json',
 };

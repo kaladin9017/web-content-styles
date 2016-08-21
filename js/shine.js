@@ -45,6 +45,7 @@
         // @todo For now just featuring one article. So if more are here, just ignore them.
         featuredData = {
           article: {
+            category: data[0].category['en-US'],
             description: data[0].description['en-US'],
             photo: `http:${data[0].headerPhoto.file.url}?w=900`,
             title: data[0].title['en-US'],
@@ -131,6 +132,7 @@
       // Extract data and prep for rendering
       articleData = {
         article: {
+          category: fetchedArticles[i].category ? fetchedArticles[i].category['en-US'] : undefined,
           photo: `http:${fetchedArticles[i].headerPhoto.file.url}?w=640`,
           title: fetchedArticles[i].title['en-US'],
           urlPath: fetchedArticles[i].urlPath,

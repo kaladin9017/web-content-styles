@@ -6,7 +6,7 @@
   var NUM_ARTICLES_DISPLAY_BATCH = 6;
 
   // Message to replace the "Read More" button when we reach the end of available articles
-  var READ_MORE_END_MESSAGE = ':)';
+  var READ_MORE_END_MESSAGE = '#ShineOn';
 
   // Array of articles fetched from the server
   var fetchedArticles = [];

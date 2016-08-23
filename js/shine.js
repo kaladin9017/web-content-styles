@@ -3,7 +3,7 @@
 (function() {
 
   // The number of articles to display at a time
-  var NUM_ARTICLES_DISPLAY_BATCH = 9;
+  var NUM_ARTICLES_DISPLAY_BATCH = 6;
 
   // Message to replace the "Read More" button when we reach the end of available articles
   var READ_MORE_END_MESSAGE = ':)';

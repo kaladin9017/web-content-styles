@@ -31,7 +31,7 @@
      * Get featured data to display.
      */
     $.get({
-      url: `${featuredJsonUrl}`,
+      url: featuredJsonUrl,
       data: null,
       success: function (data) {
         var featuredData;
@@ -47,12 +47,12 @@
           article: {
             category: data[0].category['en-US'],
             description: data[0].description['en-US'],
-            photo: `http:${data[0].headerPhoto.file.url}?w=900`,
+            photo: 'http:' + data[0].headerPhoto.file.url+ '?w=900',
             title: data[0].title['en-US'],
             urlPath: data[0].urlPath,
           },
           author: {
-            photo: `http:${data[0].author.picture.file.url}?fit=thumb&w=100&h=100`,
+            photo: 'http:' + data[0].author.picture.file.url + '?fit=thumb&w=100&h=100',
             name: data[0].author.name,
           },
         };
@@ -91,7 +91,7 @@
   function loadMoreArticles() {
     if (! fetchedArticles || fetchedArticles.length == 0) {
       $.get({
-        url: `${articlesJsonUrl}`,
+        url: articlesJsonUrl,
         data: null,
         success: onGetArticles,
         dataType: 'json',
@@ -133,13 +133,13 @@
       articleData = {
         article: {
           category: fetchedArticles[i].category ? fetchedArticles[i].category['en-US'] : undefined,
-          photo: `http:${fetchedArticles[i].headerPhoto.file.url}?w=640`,
+          photo: 'http:' + fetchedArticles[i].headerPhoto.file.url + '?w=640',
           title: fetchedArticles[i].title['en-US'],
           urlPath: fetchedArticles[i].urlPath,
         },
         author: {
           name: fetchedArticles[i].author.name,
-          photo: `http:${fetchedArticles[i].author.picture.file.url}?fit=thumb&w=100&h=100`,
+          photo: 'http:' + fetchedArticles[i].author.picture.file.url + '?fit=thumb&w=100&h=100',
         },
       };
 

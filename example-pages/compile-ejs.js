@@ -21,6 +21,7 @@ if (articleObj.author && articleObj.author.bio) {
 const articleData = {
   articleAuthor: articleObj.author,
   articleBody: marked(articleObj.body['en-US']),
+  articleCategory: articleObj.category ? articleObj.category['en-US'] :  undefined,
   articleDate: formatDisplayDate(new Date(articleObj.date['en-US'])),
   articleDescription: articleObj.description ? articleObj.description['en-US'] : undefined,
   articleHeaderPhoto: articleObj.headerPhoto ? `https:${articleObj.headerPhoto.file.url}` : undefined,
@@ -64,6 +65,18 @@ const adviceData = {
 };
 
 compile('../templates/advice-home.ejs', 'example-advice-home.html', adviceData);
+
+/////
+// Compile example daily web template
+/////
+const dailyData = {
+  css: '../_tmp/dailyshine.css',
+  jsPath: '..',
+
+  contentBaseUrl: process.env.DAILYSHINE_CONTENT_BASE_URL,
+};
+
+compile('../templates/daily-shine.ejs', 'example-dailyshine.html', dailyData);
 
 process.exit();
 

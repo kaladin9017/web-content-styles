@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Today's Shine</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link href="https://fonts.googleapis.com/css?family=Caveat+Brush" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,400i,700" rel="stylesheet" type="text/css">
+
+  <link href="<%= css %>" rel="stylesheet">
+
+</head>
+<body>
+
+  <div id="container-main">
+    <div id="container-messages">
+      hi.
+    </div>
+  </div>
+
+  <!-- Content templates -->
+  <!-- Template for messages that are sent to the user. -->
+  <script id="template-mt" type="text/template">
+    <div class="container-mt">
+      <?= message ?>
+      <? if (linkTitle && linkUrl) { ?>
+      <div>
+        <a href="<?= linkUrl ?>" target="_blank"><?= linkTitle ?></a>
+      </div>
+      <? } ?>
+    </div>
+  </script>
+
+  <!-- Template for messages that are sent from the users. -->
+  <script id="template-mo" type="text/template">
+    <div class="container-mo">
+    </div>
+  </script>
+
+  <!-- Template for button choices the user can tap to respond with. -->
+  <script id="template-mo-choice" type="text/template">
+    <div class="container-mo-choice">
+    <?= label ?>
+    </div>
+  </script>
+
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script>
+  var contentBaseUrl = '<%= contentBaseUrl %>';
+  </script>
+  <script src="<% if (typeof jsPath !== 'undefined') { %><%= jsPath %><% } %>/js/ejs.min.js"></script>
+  <script src="<% if (typeof jsPath !== 'undefined') { %><%= jsPath %><% } %>/js/dailyshine.js"></script>
+</body>
+</html>

@@ -14,16 +14,15 @@
 </head>
 <body>
 
-  <div id="container-main">
-    <div id="container-messages">
-      hi.
-    </div>
+  <div id="background"></div>
+  <div id="container-messages">
+    <div class="mt message-bubble">hi.</div>
   </div>
 
   <!-- Content templates -->
   <!-- Template for messages that are sent to the user. -->
   <script id="template-mt" type="text/template">
-    <div class="container-mt">
+    <div class="mt message-bubble">
       <?= message ?>
       <? if (linkTitle && linkUrl) { ?>
       <div>
@@ -35,14 +34,16 @@
 
   <!-- Template for messages that are sent from the users. -->
   <script id="template-mo" type="text/template">
-    <div class="container-mo">
+    <div class="mo message-bubble">
     </div>
   </script>
 
   <!-- Template for button choices the user can tap to respond with. -->
   <script id="template-mo-choice" type="text/template">
-    <div class="container-mo-choice">
-    <?= label ?>
+    <div class="mo-container">
+      <div id="mo-<?= messageNum ?>" class="mo-choice message-bubble">
+      <?= label ?>
+      </div>
     </div>
   </script>
 

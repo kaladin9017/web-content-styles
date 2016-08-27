@@ -1,20 +1,69 @@
-body {
-  background: @color-background;
+body, html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-#container-main {
+body {
+  background: @color-background;
+  font-family: 'Karla';
+  font-weight: 400;
+}
+
+#background {
   background: linear-gradient(135deg, red, @color-yellow);
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
 }
 
 #container-messages {
   bottom: 40px;
   max-width: 400px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   position: absolute;
+}
+
+#container-messages.-done {
+  position: inherit;
+}
+
+.message-bubble {
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 10px 0;
+}
+
+.mt {
+  background: @color-mt-bg;
+  color: @color-mt-text;
+}
+
+.mo {
+  background: linear-gradient(0deg, @color-mo-bg-start, @color-mo-bg-end);
+  color: @color-mo-text;
+  display: inline-block;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.mo-container {
+  text-align: right;
+}
+
+.mo-choice {
+  background: @color-mo-bg-start;
+  border-radius: 6px;
+  color: @color-mo-text;
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+
+.mo-choice:hover {
+  background: @color-mo-bg-end;
 }

@@ -14,6 +14,9 @@
   // Queue for storing up messages to display
   var MESSAGE_QUEUE = [];
 
+  // Message counter
+  var messageCounter = 1;
+
   $(document).ready(function() {
     loadDailyShine();
   });
@@ -74,6 +77,9 @@ var date = new Date('2016-08-26T12:00');
     if (nextMessages && nextMessages.length > 0) {
       loadMOChoices(nextMessages);
     }
+    else {
+      onMessagesFinished();
+    }
   }
 
   /**
@@ -110,16 +116,17 @@ var date = new Date('2016-08-26T12:00');
 
     data = {
       label: localized(content.label),
+      messageNum: messageCounter,
     };
 
     html = ejs.render(template, data, {delimiter: '?'});
-    element = $('#container-messages').append(html);
-    element.children(':last')
+    $('#container-messages').append(html)
+        .children(':last')
         .hide()
         .delay(DELAY_MT_DISPLAY + DELAY_MO_DISPLAY)
         .fadeIn(DISPLAY_ANIM_DURATION);
 
-    element.click(onClickMOChoice);
+    $('#mo-' + messageCounter).on('click', onClickMOChoice);
 
     // Add the contents of this message to the queue. When the user clicks on
     // the choice, it can then display the content it finds in the queue.
@@ -130,8 +137,14 @@ var date = new Date('2016-08-26T12:00');
    * Callback when an MO choice is clicked.
    */
   function onClickMOChoice() {
+    var element = $(this);
+
     // @todo Trigger any animation that should happen here before displaying
     // the next message
+    element.removeClass('mo-choice');
+    element.addClass('mo');
+    element.off('click');
+
     displayNextMessage();
   }
 
@@ -140,6 +153,8 @@ var date = new Date('2016-08-26T12:00');
    */
   function displayNextMessage() {
     if (MESSAGE_QUEUE.length > 0) {
+      messageCounter++;
+
       var content = MESSAGE_QUEUE.shift();
       displayMT(content);
     }
@@ -159,6 +174,13 @@ var date = new Date('2016-08-26T12:00');
     else {
       return obj;
     }
+  }
+
+  /**
+   * Logic to run once the end of the messaging flow has been reached.
+   */
+  function onMessagesFinished() {
+    $('#container-messages').addClass('-done');
   }
 
 })();

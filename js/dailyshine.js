@@ -6,7 +6,7 @@
   var DELAY_MT_DISPLAY = 500;
 
   // Delay before showing the MO options
-  var DELAY_MO_DISPLAY = 1000;
+  var DELAY_MO_DISPLAY = 1250;
 
   // Duration of display animations
   var DISPLAY_ANIM_DURATION = 750;
@@ -90,40 +90,51 @@
    * @param content Content of the message to display
    */
   function displayMT(content) {
+    var body;
     var data;
     var html;
-    var currMessage;
-    var currMessages;
-
+    var messages;
     var nextMessages;
     var template;
     var i;
 
     template = $('#template-mt').html();
 
+    // Merge user data into the message
+    body = mergeData(localized(content.body));
 
-    currMessage = mergeData(localized(content.body));
-    currMessages = currMessage.split('\n');
+    // Split message by new line so each message gets its own bubble
+    messages = body.split('\n');
 
     // Remove empty entries
-    for (i = currMessages.length - 1; i >= 0; i--) {
-      if (currMessages[i].length == 0 ||
-          (currMessages[i].length == 1 && currMessages[i].charCodeAt(0) == 13)) {
-        currMessages.splice(i, 1);
+    for (i = messages.length - 1; i >= 0; i--) {
+      if (messages[i].length == 0 ||
+          (messages[i].length == 1 && messages[i].charCodeAt(0) == 13)) {
+        messages.splice(i, 1);
       }
     }
 
-    for (i = 0; i < currMessages.length; i++) {
-      data = {
-        message: currMessages[i].trim(),
-        linkTitle: undefined,
-        linkUrl: undefined,
-      };
+    // Display the media asset first if there is one
+    if (content.media) {
+      messages.unshift({
+        media: content.media.fields.file.url,
+      });
+    }
 
-      // Only set link in the last message
-      if (i == currMessages.length - 1) {
-        data.linkTitle = localized(content.linkTitle);
-        data.linkUrl = localized(content.linkUrl);
+    for (i = 0; i < messages.length; i++) {
+      if (typeof messages[i] === 'object') {
+        data = messages[i];
+      }
+      else if (typeof messages[i] === 'string') {
+        data = {
+          message: messages[i].trim(),
+        };
+
+        // Only set link in the last message
+        if (i == messages.length - 1) {
+          data.linkTitle = localized(content.linkTitle);
+          data.linkUrl = localized(content.linkUrl);
+        }
       }
 
       // Render the template and add the message to the screen
@@ -302,7 +313,7 @@
    * Logic to run once the end of the messaging flow has been reached.
    */
   function onMessagesFinished() {
-    $('#container-messages').addClass('-done');
+
   }
 
 })();

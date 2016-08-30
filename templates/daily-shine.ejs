@@ -6,7 +6,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <link href="https://fonts.googleapis.com/css?family=Caveat+Brush" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Karla:400,400i,700" rel="stylesheet" type="text/css">
 
   <link href="<%= css %>" rel="stylesheet">
@@ -14,7 +13,6 @@
 </head>
 <body>
 
-  <div id="background"></div>
   <div id="container-messages">
     <div class="mt message-bubble">hi.</div>
   </div>
@@ -22,13 +20,20 @@
   <!-- Content templates -->
   <!-- Template for messages that are sent to the user. -->
   <script id="template-mt" type="text/template">
-    <div class="mt message-bubble">
-      <?= message ?>
-      <? if (linkTitle && linkUrl) { ?>
-      <div>
-        <a href="<?= linkUrl ?>" target="_blank"><?= linkTitle ?></a>
+    <div>
+      <div class="mt message-bubble">
+        <? if (typeof media !== 'undefined') { ?>
+          <img src="https://<?= media ?>?w=400">
+        <? } ?>
+        <? if (typeof message !== 'undefined') { ?>
+          <?= message ?>
+        <? } ?>
+        <? if (typeof linkTitle !== 'undefined' && typeof linkUrl !== 'undefined') { ?>
+        <div>
+          <a href="<?= linkUrl ?>" target="_blank"><?= linkTitle ?></a>
+        </div>
+        <? } ?>
       </div>
-      <? } ?>
     </div>
   </script>
 

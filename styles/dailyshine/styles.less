@@ -6,35 +6,37 @@ body, html {
 }
 
 body {
-  background: @color-background;
   font-family: 'Karla';
   font-weight: 400;
 }
 
-#background {
-  background: linear-gradient(135deg, red, @color-yellow);
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
+html {
+  background: url('https://image.freepik.com/free-vector/tricolor-gradient-background_1095-64.jpg') fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 #container-messages {
   bottom: 40px;
   max-width: 400px;
-  padding-left: 20px;
-  padding-right: 20px;
-  position: absolute;
-}
-
-#container-messages.-done {
-  position: inherit;
+  padding: 40px 20px;
 }
 
 .message-bubble {
-  border-radius: 20px;
+  border-radius: 8px;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 22px;
+  margin: 2px 0;
   padding: 10px 20px;
-  margin: 10px 0;
+
+  img {
+    max-width: 100%;
+  }
 }
 
 .mt {

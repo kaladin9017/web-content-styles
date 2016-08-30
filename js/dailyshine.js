@@ -17,17 +17,56 @@
   // Message counter
   var messageCounter = 1;
 
+  // Fetched user data, if any
+  var userData;
+
   $(document).ready(function() {
-    loadDailyShine();
+    loadUser();
   });
+
+  /**
+   * Fetch and cache user data.
+   */
+  function loadUser() {
+    var url;
+
+    // Expecting to be able to extract the code from the URL
+    var arrLoc = window.location.pathname.split('/');
+    var code = arrLoc.indexOf(arrLoc.length - 1);
+
+    if (code && code.length > 0) {
+      url = photonBaseUrl + 'users?referralCode=' + code;
+
+      $.get({
+        url: url,
+        data: null,
+        dataType: 'json',
+        success: function(data) {
+          userData = data;
+
+          loadDailyShine();
+        },
+      });
+    }
+    else {
+      loadDailyShine();
+    }
+  }
 
   /**
    * Fetches and displays the start of the Daily Shine content.
    */
   function loadDailyShine() {
-    // Use the current date to find the corresponding content file
-    // var date = new Date();
-var date = new Date('2016-08-26T12:00');
+    // Use the current date to find the corresponding content file. Or if one is
+    // specified in a `date` param, then use that.
+    var date;
+    if (getParameter('date')) {
+      date = new Date(getParameter('date'));
+    }
+    else {
+      date = new Date();
+    }
+
     var year = date.getFullYear();
     var month = date.getMonth() + 1 >= 10 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1);
     var day = date.getDate() >= 10 ? date.getDate() : '0' + date.getDate();
@@ -53,24 +92,48 @@ var date = new Date('2016-08-26T12:00');
   function displayMT(content) {
     var data;
     var html;
-    var template;
+    var currMessage;
+    var currMessages;
+
     var nextMessages;
+    var template;
+    var i;
 
     template = $('#template-mt').html();
 
-    data = {
-      message: localized(content.body),
-      linkTitle: localized(content.linkTitle),
-      linkUrl: localized(content.linkUrl),
-    };
 
-    // Render the template and add the message to the screen
-    html = ejs.render(template, data, {delimiter: '?'});
-    $('#container-messages').append(html)
-        .children(':last')
-        .hide()
-        .delay(DELAY_MT_DISPLAY)
-        .fadeIn(DISPLAY_ANIM_DURATION);
+    currMessage = mergeData(localized(content.body));
+    currMessages = currMessage.split('\n');
+
+    // Remove empty entries
+    for (i = currMessages.length - 1; i >= 0; i--) {
+      if (currMessages[i].length == 0 ||
+          (currMessages[i].length == 1 && currMessages[i].charCodeAt(0) == 13)) {
+        currMessages.splice(i, 1);
+      }
+    }
+
+    for (i = 0; i < currMessages.length; i++) {
+      data = {
+        message: currMessages[i].trim(),
+        linkTitle: undefined,
+        linkUrl: undefined,
+      };
+
+      // Only set link in the last message
+      if (i == currMessages.length - 1) {
+        data.linkTitle = localized(content.linkTitle);
+        data.linkUrl = localized(content.linkUrl);
+      }
+
+      // Render the template and add the message to the screen
+      html = ejs.render(template, data, {delimiter: '?'});
+      $('#container-messages').append(html)
+          .children(':last')
+          .hide()
+          .delay(DELAY_MT_DISPLAY * (i + 1))
+          .fadeIn(DISPLAY_ANIM_DURATION);
+    }
 
     // Fetch MO options to show the user, if any
     var nextMessages = localized(content.nextMessages);
@@ -174,6 +237,65 @@ var date = new Date('2016-08-26T12:00');
     else {
       return obj;
     }
+  }
+
+  /**
+   * Merge user data into the message.
+   *
+   * @param msg
+   * @return string
+   */
+  function mergeData(msg) {
+    var merged = msg;
+    var codeTag = '{{referral_code}}';
+    var fnameTag = '{{first_name}}';
+
+    var codeIdx = merged.indexOf(codeTag);
+    var fnameIdx = merged.indexOf(fnameTag);
+
+    var msgP1, msgP2;
+
+    if (codeIdx >= 0) {
+      msgP1 = merged.substring(0, codeIdx);
+      msgP2 = merged.substring(codeIdx + codeTag.length);
+      merged = msgP1 + userData.referralCode + msgP2;
+    }
+
+    if (fnameIdx >= 0) {
+      msgP1 = merged.substring(0, fnameIdx);
+      msgP2 = merged.substring(fnameIdx + fnameTag.length);
+
+      if (userData && userData.firstName) {
+        merged = msgP1 + userData.firstName + msgP2;
+      }
+      // Special case, if there's a ', ' before {{first_name}} and we don't have
+      // first name, then leave blank and also remove the ', '.
+      else if (fnameIdx > 2 && msgP1.substr(-2) == ', ') {
+        merged = msgP1.substring(0, msgP1.length - 2) + msgP2;
+      }
+      else {
+        merged = msgP1 + msgP2;
+      }
+    }
+
+    return merged;
+  }
+
+  /**
+   * Helper function to parse the url query params.
+   * @credit: http://stackoverflow.com/a/901144
+   *
+   * @param name The name of the param
+   * @return string
+   */
+  function getParameter(name) {
+    var url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
   }
 
   /**

@@ -20,8 +20,12 @@ html {
   background-size: cover;
 }
 
+/**
+ * Main message container.
+ */
 #container-messages {
   bottom: 40px;
+  margin: 0 auto;
   max-width: 400px;
   padding: 40px 20px;
 }
@@ -32,7 +36,7 @@ html {
   font-size: 16px;
   line-height: 22px;
   margin: 2px 0;
-  padding: 10px 20px;
+  padding: 10px;
 
   img {
     max-width: 100%;
@@ -49,7 +53,7 @@ html {
   color: @color-mo-text;
   display: inline-block;
   margin-bottom: 20px;
-  margin-top: 0;
+  margin-top: 10px;
 }
 
 .mo-container {
@@ -68,4 +72,16 @@ html {
 
 .mo-choice:hover {
   background: @color-mo-bg-end;
+}
+
+/**
+ * Section that pops up when you make it to the end.
+ */
+#end-section {
+  text-align: center;
+
+  .separator {
+    border-top: 2px dotted white;
+    margin: 40px;
+  }
 }

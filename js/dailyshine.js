@@ -11,6 +11,14 @@
   // Duration of display animations
   var DISPLAY_ANIM_DURATION = 750;
 
+  // Duration of the viewport scroll animation
+  var SCROLL_ANIM_DURATION = 1000;
+
+  // A bucket of random messages someone could receive at the end
+  var END_MESSAGES = [
+    'Some randomized copy can go here #ShineOn 🌟',
+  ];
+
   // Queue for storing up messages to display
   var MESSAGE_QUEUE = [];
 
@@ -29,10 +37,7 @@
    */
   function loadUser() {
     var url;
-
-    // Expecting to be able to extract the code from the URL
-    var arrLoc = window.location.pathname.split('/');
-    var code = arrLoc.indexOf(arrLoc.length - 1);
+    var code = getUserCode();
 
     if (code && code.length > 0) {
       url = photonBaseUrl + 'users?referralCode=' + code;
@@ -92,6 +97,7 @@
   function displayMT(content) {
     var body;
     var data;
+    var element;
     var html;
     var messages;
     var nextMessages;
@@ -139,9 +145,8 @@
 
       // Render the template and add the message to the screen
       html = ejs.render(template, data, {delimiter: '?'});
-      $('#container-messages').append(html)
-          .children(':last')
-          .hide()
+      element = $('#container-messages').append(html).children(':last');
+      element.hide()
           .delay(DELAY_MT_DISPLAY * (i + 1))
           .fadeIn(DISPLAY_ANIM_DURATION);
     }
@@ -194,9 +199,8 @@
     };
 
     html = ejs.render(template, data, {delimiter: '?'});
-    $('#container-messages').append(html)
-        .children(':last')
-        .hide()
+    element = $('#container-messages').append(html).children(':last');
+    element.hide()
         .delay(DELAY_MT_DISPLAY + DELAY_MO_DISPLAY)
         .fadeIn(DISPLAY_ANIM_DURATION);
 
@@ -220,6 +224,17 @@
     element.off('click');
 
     displayNextMessage();
+
+    // This feels kinda hacky, but whatever
+    var delay = 750;
+    setTimeout(function() {
+      var start = $(window).scrollTop();
+      var dist = 1000;
+
+      $('html, body').animate({
+        scrollTop: start + dist,
+      }, SCROLL_ANIM_DURATION);
+    }, delay);
   }
 
   /**
@@ -310,10 +325,71 @@
   }
 
   /**
+   * Helper function for extracting the user's referral code to use their
+   * identifier to get more info.
+   *
+   * @return string
+   */
+  function getUserCode() {
+    var code;
+    var path;
+
+    // Expecting to be able to extract the code from the URL
+    if (getParameter('referralCode')) {
+      code = getParameter('referralCode');
+    }
+    else {
+      path = window.location.pathname.split('/');
+      code = path.indexOf(path.length - 1);
+    }
+
+    return code;
+  }
+
+  /**
    * Logic to run once the end of the messaging flow has been reached.
    */
   function onMessagesFinished() {
+    var data;
+    var date;
+    var dateQuery;
+    var element;
+    var endMessage;
+    var html;
+    var template;
+    var month, day, year;
 
+    // Display the end CTA section
+    template = $('#template-daily-end').html();
+
+    // Set the date query string for the share link
+    if (getParameter('date')) {
+      date = new Date(getParameter('date'));
+    }
+    else {
+      date = new Date();
+    }
+
+    year = date.getFullYear();
+    month = date.getMonth() + 1 >= 10 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1);
+    day = date.getDate() >= 10 ? date.getDate() : '0' + date.getDate();
+    dateQuery = month + '-' + day + '-' + year;
+    // Note: for some reason `new Date('MM-dd-YYYY')` works, but
+    //   `new Date('YYYY-MM-dd')` sets date a day behind.
+
+    data = {
+      // Used for the share link
+      shareLink: 'http://' + window.location.hostname + '?date=' + dateQuery,
+      showCTA: getUserCode() ? false : true,
+      // Randomly select an end message
+      endMessage: END_MESSAGES[Math.floor(Math.random() * END_MESSAGES.length)],
+    };
+
+    html = ejs.render(template, data, {delimiter: '?'});
+    element = $('#container-messages').append(html).children(':last');
+    element.hide()
+        .delay(DELAY_MT_DISPLAY + DELAY_MO_DISPLAY)
+        .fadeIn(DISPLAY_ANIM_DURATION);
   }
 
 })();

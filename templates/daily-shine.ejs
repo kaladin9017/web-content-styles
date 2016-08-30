@@ -13,8 +13,10 @@
 </head>
 <body>
 
-  <div id="container-messages">
-    <div class="mt message-bubble">hi.</div>
+  <div>
+    <div id="container-messages">
+      <div class="mt message-bubble">hi.</div>
+    </div>
   </div>
 
   <!-- Content templates -->
@@ -49,6 +51,27 @@
       <div id="mo-<?= messageNum ?>" class="mo-choice message-bubble">
       <?= label ?>
       </div>
+    </div>
+  </script>
+
+  <!-- Template for section that's displayed once the end is reached -->
+  <script id="template-daily-end" type="text/template">
+    <div id="end-section">
+      <div class="separator"></div>
+      <? if (showCTA) { ?>
+        <div>Like what you read?</div>
+        <div>Get Shine now for daily affirmations on your phone!</div>
+        <div>
+          <a href="http://www.shinetext.com">SIGN UP</a>
+        </div>
+      <? } ?>
+      <div id="end-message"><?= endMessage ?></div>
+      <div>Share Today's Shine with friends!</div>
+      <a href="<?= shareLink ?>">
+        <?= shareLink ?>
+      </a>
+      <div>Facebook</div>
+      <div>Twitter</div>
     </div>
   </script>
 

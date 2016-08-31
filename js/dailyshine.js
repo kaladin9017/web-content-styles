@@ -37,7 +37,7 @@
    */
   function loadUser() {
     var url;
-    var code = getUserCode();
+    var code = getParameter('r');
 
     if (code && code.length > 0) {
       url = photonBaseUrl + 'users?referralCode=' + code;
@@ -48,6 +48,14 @@
         dataType: 'json',
         success: function(data) {
           userData = data;
+
+          loadDailyShine();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.error({
+            status: textStatus,
+            error: errorThrown,
+          });
 
           loadDailyShine();
         },
@@ -82,10 +90,10 @@
     $.get({
       url: url,
       data: null,
+      dataType: 'json',
       success: function(data) {
         displayMT(data.starterMessage['en-US'].fields);
       },
-      dataType: 'json',
     });
   }
 
@@ -325,28 +333,6 @@
   }
 
   /**
-   * Helper function for extracting the user's referral code to use their
-   * identifier to get more info.
-   *
-   * @return string
-   */
-  function getUserCode() {
-    var code;
-    var path;
-
-    // Expecting to be able to extract the code from the URL
-    if (getParameter('referralCode')) {
-      code = getParameter('referralCode');
-    }
-    else {
-      path = window.location.pathname.split('/');
-      code = path.indexOf(path.length - 1);
-    }
-
-    return code;
-  }
-
-  /**
    * Logic to run once the end of the messaging flow has been reached.
    */
   function onMessagesFinished() {
@@ -380,7 +366,7 @@
     data = {
       // Used for the share link
       shareLink: 'http://' + window.location.hostname + '?date=' + dateQuery,
-      showCTA: getUserCode() ? false : true,
+      showCTA: getParameter('r') ? false : true,
       // Randomly select an end message
       endMessage: END_MESSAGES[Math.floor(Math.random() * END_MESSAGES.length)],
     };
@@ -390,6 +376,16 @@
     element.hide()
         .delay(DELAY_MT_DISPLAY + DELAY_MO_DISPLAY)
         .fadeIn(DISPLAY_ANIM_DURATION);
+
+    // Send GA event
+    if (ga) {
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'end',
+        eventAction: 'reached',
+        eventLabel: dateQuery,
+      });
+    }
   }
 
 })();

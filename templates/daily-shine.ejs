@@ -10,6 +10,15 @@
 
   <link href="<%= css %>" rel="stylesheet">
 
+  <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-68971267-2', 'auto');
+    ga('require', 'eventTracker');
+    ga('send', 'pageview');
+
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <script async src='https://cdnjs.cloudflare.com/ajax/libs/autotrack/1.0.1/autotrack.js'></script>
 </head>
 <body>
 
@@ -48,7 +57,10 @@
   <!-- Template for button choices the user can tap to respond with. -->
   <script id="template-mo-choice" type="text/template">
     <div class="mo-container">
-      <div id="mo-<?= messageNum ?>" class="mo-choice message-bubble">
+      <div id="mo-<?= messageNum ?>" class="mo-choice message-bubble"
+        ga-on="click"
+        ga-event-category="MO"
+        ga-event-action="click">
       <?= label ?>
       </div>
     </div>

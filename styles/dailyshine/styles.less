@@ -11,7 +11,7 @@ body {
 }
 
 html {
-  background: url('https://image.freepik.com/free-vector/tricolor-gradient-background_1095-64.jpg') fixed;
+  /*background: url('some image here if we want to eventually add a background') fixed;*/
   background-position: center;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -33,27 +33,24 @@ html {
 .message-bubble {
   border-radius: 8px;
   display: inline-block;
-  font-size: 16px;
-  line-height: 22px;
-  margin: 2px 0;
-  padding: 10px;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 4px 0;
+  padding: 14px;
 
   img {
     max-width: 100%;
   }
 }
 
+.message-bubble.mt-media {
+  padding: 0;
+}
+
 .mt {
   background: @color-mt-bg;
   color: @color-mt-text;
-}
-
-.mo {
-  background: linear-gradient(0deg, @color-mo-bg-start, @color-mo-bg-end);
-  color: @color-mo-text;
-  display: inline-block;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  max-width: 300px;
 }
 
 .mo-container {
@@ -62,16 +59,32 @@ html {
 
 .mo-choice {
   background: @color-mo-bg-start;
-  border-radius: 6px;
-  color: @color-mo-text;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  color: @color-mo-text-start;
   cursor: pointer;
   display: inline-block;
-  margin-bottom: 0;
-  margin-top: 20px;
+  margin: 8px 0;
+  transform: translate3d(-80px, 20px, 0);
+
+  transition-property: background, color, border-radius, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
 }
 
 .mo-choice:hover {
+  box-shadow: none;
+}
+
+.mo-choice.-clicked {
   background: @color-mo-bg-end;
+  color: @color-mo-text-end;
+  cursor: default;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 20px;
+  box-shadow: none;
+  transform: translate3d(0, 0, 0);
 }
 
 /**

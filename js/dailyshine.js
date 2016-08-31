@@ -6,7 +6,7 @@
   var DELAY_MT_DISPLAY = 500;
 
   // Delay before showing the MO options
-  var DELAY_MO_DISPLAY = 1250;
+  var DELAY_MO_DISPLAY = 500;
 
   // Duration of display animations
   var DISPLAY_ANIM_DURATION = 750;
@@ -48,6 +48,13 @@
         dataType: 'json',
         success: function(data) {
           userData = data;
+
+          if (userData && userData.firstName) {
+            displayMT({
+              body: 'Good morning, ' + userData.firstName + '!',
+              intro: true,
+            });
+          }
 
           loadDailyShine();
         },
@@ -112,8 +119,6 @@
     var template;
     var i;
 
-    template = $('#template-mt').html();
-
     // Merge user data into the message
     body = mergeData(localized(content.body));
 
@@ -152,6 +157,12 @@
       }
 
       // Render the template and add the message to the screen
+      if (data.media) {
+        template = $('#template-mt-media').html();
+      }
+      else {
+        template = $('#template-mt').html();
+      }
       html = ejs.render(template, data, {delimiter: '?'});
       element = $('#container-messages').append(html).children(':last');
       element.hide()
@@ -162,17 +173,20 @@
     // Fetch MO options to show the user, if any
     var nextMessages = localized(content.nextMessages);
     if (nextMessages && nextMessages.length > 0) {
-      loadMOChoices(nextMessages);
+      loadMOChoices(nextMessages, DELAY_MT_DISPLAY * messages.length);
     }
-    else {
+    else if (! content.intro) {
       onMessagesFinished();
     }
   }
 
   /**
    * Fetch and display the MO choices for the user.
+   *
+   * @param messages
+   * @param additionalDelay Additional delay before displaying the MO choices
    */
-  function loadMOChoices(messages) {
+  function loadMOChoices(messages, additionalDelay) {
     // @todo For now, just handling one MO option to display
     var id = messages[0].sys.id;
     var url = contentBaseUrl + 'messages/' + id + '.json';
@@ -181,7 +195,7 @@
       url: url,
       data: null,
       success: function(data) {
-        displayMOChoices(data);
+        displayMOChoices(data, additionalDelay);
       },
       dataType: 'json',
     });
@@ -192,8 +206,9 @@
    *
    * @param content Message content obj. Inludes the `label` property that
    *                defines what the choices should be.
+   * @param additionalDelay Additional delay before displaying the MO choices
    */
-  function displayMOChoices(content) {
+  function displayMOChoices(content, additionalDelay) {
     var data;
     var element;
     var html
@@ -209,7 +224,7 @@
     html = ejs.render(template, data, {delimiter: '?'});
     element = $('#container-messages').append(html).children(':last');
     element.hide()
-        .delay(DELAY_MT_DISPLAY + DELAY_MO_DISPLAY)
+        .delay(additionalDelay + DELAY_MO_DISPLAY)
         .fadeIn(DISPLAY_ANIM_DURATION);
 
     $('#mo-' + messageCounter).on('click', onClickMOChoice);
@@ -227,8 +242,7 @@
 
     // @todo Trigger any animation that should happen here before displaying
     // the next message
-    element.removeClass('mo-choice');
-    element.addClass('mo');
+    element.addClass('-clicked');
     element.off('click');
 
     displayNextMessage();

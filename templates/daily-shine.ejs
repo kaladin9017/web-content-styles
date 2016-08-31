@@ -24,19 +24,15 @@
 <body>
 
   <div>
-    <div id="container-messages">
-      <div class="mt message-bubble">hi.</div>
-    </div>
+    <div id="container-messages"></div>
   </div>
 
   <!-- Content templates -->
+
   <!-- Template for messages that are sent to the user. -->
   <script id="template-mt" type="text/template">
     <div>
       <div class="mt message-bubble">
-        <? if (typeof media !== 'undefined') { ?>
-          <img src="https://<?= media ?>?w=400">
-        <? } ?>
         <? if (typeof message !== 'undefined') { ?>
           <?= message ?>
         <? } ?>
@@ -49,10 +45,9 @@
     </div>
   </script>
 
-  <!-- Template for messages that are sent from the users. -->
-  <script id="template-mo" type="text/template">
-    <div class="mo message-bubble">
-    </div>
+  <!-- Template for messages with media sent to the user. -->
+  <script id="template-mt-media" type="text/template">
+    <img class="message-bubble mt-media" src="https://<?= media ?>?w=400">
   </script>
 
   <!-- Template for button choices the user can tap to respond with. -->

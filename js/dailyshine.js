@@ -3,21 +3,16 @@
 (function() {
 
   // Delay before showing an MT message
-  var DELAY_MT_DISPLAY = 500;
+  var DELAY_MT_DISPLAY = 450;
 
   // Delay before showing the MO options
-  var DELAY_MO_DISPLAY = 500;
+  var DELAY_MO_DISPLAY = 450;
 
   // Duration of display animations
   var DISPLAY_ANIM_DURATION = 750;
 
   // Duration of the viewport scroll animation
   var SCROLL_ANIM_DURATION = 1000;
-
-  // A bucket of random messages someone could receive at the end
-  var END_MESSAGES = [
-    'Some randomized copy can go here #ShineOn 🌟',
-  ];
 
   // Queue for storing up messages to display
   var MESSAGE_QUEUE = [];
@@ -171,12 +166,13 @@
     }
 
     // Fetch MO options to show the user, if any
+    var displayDelay = DELAY_MT_DISPLAY * messages.length;
     var nextMessages = localized(content.nextMessages);
     if (nextMessages && nextMessages.length > 0) {
-      loadMOChoices(nextMessages, DELAY_MT_DISPLAY * messages.length);
+      loadMOChoices(nextMessages, displayDelay);
     }
     else if (! content.intro) {
-      onMessagesFinished();
+      onMessagesFinished(displayDelay);
     }
   }
 
@@ -348,12 +344,13 @@
 
   /**
    * Logic to run once the end of the messaging flow has been reached.
+   *
+   * @param displayDelay
    */
-  function onMessagesFinished() {
+  function onMessagesFinished(displayDelay) {
     var data;
     var date;
     var dateQuery;
-    var element;
     var endMessage;
     var html;
     var template;
@@ -380,16 +377,14 @@
     data = {
       // Used for the share link
       shareLink: 'http://' + window.location.hostname + '?date=' + dateQuery,
-      showCTA: getParameter('r') ? false : true,
-      // Randomly select an end message
-      endMessage: END_MESSAGES[Math.floor(Math.random() * END_MESSAGES.length)],
+      showSignUp: getParameter('r') ? false : true,
     };
 
     html = ejs.render(template, data, {delimiter: '?'});
-    element = $('#container-messages').append(html).children(':last');
-    element.hide()
-        .delay(DELAY_MT_DISPLAY + DELAY_MO_DISPLAY)
-        .fadeIn(DISPLAY_ANIM_DURATION);
+    $('#end-section')
+      .append(html)
+      .delay(displayDelay + DELAY_MO_DISPLAY)
+      .fadeIn(DISPLAY_ANIM_DURATION);
 
     // Send GA event
     if (ga) {

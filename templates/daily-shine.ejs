@@ -25,6 +25,7 @@
 
   <div>
     <div id="container-messages"></div>
+    <div id="end-section"></div>
   </div>
 
   <!-- Content templates -->
@@ -64,23 +65,22 @@
 
   <!-- Template for section that's displayed once the end is reached -->
   <script id="template-daily-end" type="text/template">
-    <div id="end-section">
-      <div class="separator"></div>
-      <? if (showCTA) { ?>
-        <div>Like what you read?</div>
-        <div>Get Shine now for daily affirmations on your phone!</div>
-        <div>
-          <a href="http://www.shinetext.com">SIGN UP</a>
-        </div>
-      <? } ?>
-      <div id="end-message"><?= endMessage ?></div>
-      <div>Share Today's Shine with friends!</div>
-      <a href="<?= shareLink ?>">
-        <?= shareLink ?>
-      </a>
-      <div>Facebook</div>
-      <div>Twitter</div>
-    </div>
+    <div class="icon-spark"></div>
+  <? if (showSignUp) { ?>
+    <h2>Get Shine!</h2>
+    <p>🌟 Like what you read? 🌟</p>
+    <p>Get Shine now for daily affirmations on your phone!</p>
+    <a href="http://www.shinetext.com"><div class="signup-button">SIGN UP</div></a>
+  <? } else { ?>
+    <h2>Pass On the Shine!</h2>
+    <p>Share the good feels with your bffs 😻 with the link below.</p>
+    <a href="<?= shareLink ?>">
+      <?= shareLink ?>
+    </a>
+    <p>or share on</p>
+    <a class="social-icon -facebook" href="http://www.facebook.com/sharer/sharer.php?u=<?= shareLink ?>" target="_blank"></a>
+    <a class="social-icon -twitter" href="http://twitter.com/share?url=<?= shareLink ?>&text=Today's Shine from @ShineText!" target="_blank"></a>
+  <? } ?>
   </script>
 
   <!-- JS -->

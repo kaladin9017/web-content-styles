@@ -114,8 +114,8 @@
     var template;
     var i;
 
-    // Merge user data into the message
-    body = mergeData(localized(content.body));
+    // Merge user data into the message and turn URLs into links
+    body = makeLinks(mergeData(localized(content.body)));
 
     // Split message by new line so each message gets its own bubble
     messages = body.split('\n');
@@ -285,6 +285,35 @@
     else {
       return obj;
     }
+  }
+
+  /**
+   * Search for URLs in a body of text and convert them to links.
+   *
+   * @param text
+   * @return string
+   */
+  function makeLinks(text) {
+    var match, matches;
+    var startAnchor, endAnchor;
+    var preUrl, postUrl;
+    var i;
+    var regex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+
+    matches = text.match(regex);
+    for (i = 0; matches && i < matches.length; i++) {
+      match = matches[0].trim();
+      if (match.indexOf('http') >= 0 && text.indexOf(match) >= 0) {
+        startAnchor = '<a href="' + match + '" target="_blank">';
+        endAnchor = '</a>';
+        preUrl = text.substr(0, text.indexOf(match));
+        postUrl = text.substr(text.indexOf(match) + match.length);
+
+        text = preUrl + startAnchor + match + endAnchor + postUrl;
+      }
+    }
+
+    return text;
   }
 
   /**

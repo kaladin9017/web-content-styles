@@ -35,7 +35,7 @@
     <div>
       <div class="mt message-bubble">
         <? if (typeof message !== 'undefined') { ?>
-          <?= message ?>
+          <?- message ?>
         <? } ?>
       </div>
     </div>
@@ -45,7 +45,7 @@
   <script id="template-mt-link" type="text/template">
     <a class="message-bubble mt-link" href="<?= linkUrl ?>" target="_blank">
       <div class="container-msg">
-        <?= message ?>
+        <?- message ?>
       </div>
       <div class="container-link">
         <div class="link-arrow"></div>
@@ -73,6 +73,7 @@
 
   <!-- Template for section that's displayed once the end is reached -->
   <script id="template-daily-end" type="text/template">
+    <div class="end-arrow"></div>
     <div class="icon-spark"></div>
   <? if (showSignUp) { ?>
     <h2>Get Shine!</h2>

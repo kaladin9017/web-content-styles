@@ -62,7 +62,7 @@ html {
 
 .message-bubble.mt-link {
   background: @color-mt-bg;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   color: @color-mt-text;
   max-width: 300px;
   padding: 0;
@@ -112,7 +112,7 @@ html {
   cursor: pointer;
   display: inline-block;
   margin: 8px 0;
-  transform: translate3d(0, 20px, 0);
+  transform: translate3d(0, 30px, 0);
 
   transition-property: background, color, border-radius, transform;
   transition-duration: 0.3s;
@@ -144,7 +144,7 @@ html {
   background: black;
   color: white;
   font-size: 18px;
-  padding: 40px;
+  padding: 10px 40px 40px 40px;
   text-align: center;
 
   a {
@@ -155,6 +155,18 @@ html {
     font-size: 36px;
     font-weight: 400;
     margin-top: 10px;
+  }
+
+  .end-arrow {
+    border-radius: 50px;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    background-image: url("https://images.contentful.com/awpxl2koull4/67EwXNcqnm6uI8ECcOkW82/25606df2cd74bd095a35f247c4461778/dailyshine-link-arrow.png?w=50&h=50");
+    background-repeat: no-repeat;
+    position: relative;
+    top: -35px;
+    transform: rotate(90deg);
   }
 
   .icon-spark {

@@ -155,6 +155,9 @@
       if (data.media) {
         template = $('#template-mt-media').html();
       }
+      else if (data.linkTitle && data.linkUrl) {
+        template = $('#template-mt-link').html();
+      }
       else {
         template = $('#template-mt').html();
       }
@@ -238,6 +241,7 @@
 
     // @todo Trigger any animation that should happen here before displaying
     // the next message
+    element.removeClass('-active');
     element.addClass('-clicked');
     element.off('click');
 

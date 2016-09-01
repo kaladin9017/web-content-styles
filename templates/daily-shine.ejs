@@ -5,7 +5,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Today's Shine. Messages with motivational quotes, positive affirmations and actions you can take every morning."
+  <meta name="description" content="Today's Shine. Messages with motivational quotes, positive affirmations and actions you can take every morning.">
 
   <link href="https://fonts.googleapis.com/css?family=Karla:400,400i,700" rel="stylesheet" type="text/css">
 
@@ -37,11 +37,20 @@
         <? if (typeof message !== 'undefined') { ?>
           <?= message ?>
         <? } ?>
-        <? if (typeof linkTitle !== 'undefined' && typeof linkUrl !== 'undefined') { ?>
-        <div>
-          <a href="<?= linkUrl ?>" target="_blank"><?= linkTitle ?></a>
+      </div>
+    </div>
+  </script>
+
+  <!-- Template for messages with links. -->
+  <script id="template-mt-link" type="text/template">
+    <div>
+      <div class="message-bubble mt-link">
+        <div class="container-msg">
+          <?= message ?>
         </div>
-        <? } ?>
+        <a class="container-link" href="<?= linkUrl ?>" target="_blank">
+          <?= linkTitle ?>
+        </a>
       </div>
     </div>
   </script>

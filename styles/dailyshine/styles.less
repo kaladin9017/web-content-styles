@@ -6,6 +6,7 @@ body, html {
 }
 
 body {
+  border-top: 4px solid @color-yellow;
   font-family: 'Karla';
   font-weight: 400;
 }
@@ -27,7 +28,20 @@ html {
   bottom: 40px;
   margin: 0 auto;
   max-width: 400px;
-  padding: 40px 20px;
+  padding: 20px 20px 40px 20px;
+}
+
+.link-arrow {
+  border-radius: 40px;
+  height: 40px;
+  width: 40px;
+  background-image: url("https://images.contentful.com/awpxl2koull4/67EwXNcqnm6uI8ECcOkW82/25606df2cd74bd095a35f247c4461778/dailyshine-link-arrow.png?w=40&h=40");
+  background-repeat: no-repeat;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.link-arrow:hover {
+  box-shadow: none;
 }
 
 .message-bubble {
@@ -42,6 +56,33 @@ html {
 .message-bubble.mt-media {
   padding: 0;
   max-width: 100%;
+}
+
+.message-bubble.mt-link {
+  background: @color-mt-bg;
+  color: @color-mt-text;
+  max-width: 300px;
+  padding: 0;
+
+  .container-msg {
+    padding: 14px;
+  }
+
+  .container-link {
+    background: @color-yellow;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    color: @color-mt-text;
+    display: block;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .container-link:hover {
+    box-shadow: none;
+  }
 }
 
 .mt {
@@ -61,7 +102,7 @@ html {
   cursor: pointer;
   display: inline-block;
   margin: 8px 0;
-  transform: translate3d(-60px, 20px, 0);
+  transform: translate3d(0, 20px, 0);
 
   transition-property: background, color, border-radius, transform;
   transition-duration: 0.3s;
@@ -119,7 +160,7 @@ html {
     background: @color-yellow;
     border-radius: 5px;
     color: black;
-    margin: 40px;
+    margin: 40px auto;
     padding-bottom: 10px;
     padding-top: 10px;
     text-transform: uppercase;

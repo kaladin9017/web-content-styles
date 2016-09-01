@@ -43,16 +43,15 @@
 
   <!-- Template for messages with links. -->
   <script id="template-mt-link" type="text/template">
-    <div>
-      <div class="message-bubble mt-link">
-        <div class="container-msg">
-          <?= message ?>
-        </div>
-        <a class="container-link" href="<?= linkUrl ?>" target="_blank">
-          <?= linkTitle ?>
-        </a>
+    <a class="message-bubble mt-link" href="<?= linkUrl ?>" target="_blank">
+      <div class="container-msg">
+        <?= message ?>
       </div>
-    </div>
+      <div class="container-link">
+        <div class="link-arrow"></div>
+        <div class="link-message"><?= linkTitle ?></div>
+      </div>
+    </a>
   </script>
 
   <!-- Template for messages with media sent to the user. -->

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Today's Shine</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Today's Shine. Messages with motivational quotes, positive affirmations and actions you can take every morning.">
+
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,400i,700" rel="stylesheet" type="text/css">
+
+  <link href="<%= css %>" rel="stylesheet">
+
+  <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-68971267-2', 'auto');
+    ga('require', 'eventTracker');
+    ga('send', 'pageview');
+
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <script async src='https://cdnjs.cloudflare.com/ajax/libs/autotrack/1.0.1/autotrack.js'></script>
+</head>
+<body>
+
+  <div>
+    <div id="container-messages"></div>
+    <div id="end-section"></div>
+  </div>
+
+  <!-- Content templates -->
+
+  <!-- Template for messages that are sent to the user. -->
+  <script id="template-mt" type="text/template">
+    <div>
+      <div class="mt message-bubble">
+        <? if (typeof message !== 'undefined') { ?>
+          <?- message ?>
+        <? } ?>
+      </div>
+    </div>
+  </script>
+
+  <!-- Template for messages with links. -->
+  <script id="template-mt-link" type="text/template">
+    <a class="message-bubble mt-link" href="<?= linkUrl ?>" target="_blank">
+      <div class="container-msg">
+        <?- message ?>
+      </div>
+      <div class="container-link">
+        <div class="link-arrow"></div>
+        <div class="link-message"><?= linkTitle ?></div>
+      </div>
+    </a>
+  </script>
+
+  <!-- Template for messages with media sent to the user. -->
+  <script id="template-mt-media" type="text/template">
+    <img class="message-bubble mt-media" src="https://<?= media ?>?w=400">
+  </script>
+
+  <!-- Template for button choices the user can tap to respond with. -->
+  <script id="template-mo-choice" type="text/template">
+    <div class="mo-container">
+      <div id="mo-<?= messageNum ?>" class="mo-choice message-bubble"
+        ga-on="click"
+        ga-event-category="MO"
+        ga-event-action="click">
+      <?= label ?>
+      </div>
+    </div>
+  </script>
+
+  <!-- Template for section that's displayed once the end is reached -->
+  <script id="template-daily-end" type="text/template">
+    <div class="end-arrow"></div>
+    <div class="icon-spark"></div>
+  <? if (showSignUp) { ?>
+    <h2>Get Shine!</h2>
+    <p>🌟 Like what you read? 🌟</p>
+    <p>Get Shine now for daily affirmations on your phone!</p>
+    <a href="http://www.shinetext.com"><div class="signup-button">SIGN UP</div></a>
+  <? } else { ?>
+    <h2>Pass On the Shine!</h2>
+    <p>Share the good feels with your bffs 😻 with the link below.</p>
+    <a href="<?= shareLink ?>">
+      <?= shareLink ?>
+    </a>
+    <p>or share on</p>
+    <a class="social-icon -facebook" href="http://www.facebook.com/sharer/sharer.php?u=<?= shareLink ?>" target="_blank"></a>
+    <a class="social-icon -twitter" href="http://twitter.com/share?url=<?= shareLink ?>&text=Today's Shine from @ShineText!" target="_blank"></a>
+  <? } ?>
+  </script>
+
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script>
+  var contentBaseUrl = '<%= contentBaseUrl %>';
+  var photonBaseUrl = '<%= photonBaseUrl %>';
+  </script>
+  <script src="<% if (typeof jsPath !== 'undefined') { %><%= jsPath %><% } %>/js/ejs.min.js"></script>
+  <script src="<% if (typeof jsPath !== 'undefined') { %><%= jsPath %><% } %>/js/dailyshine.js"></script>
+</body>
+</html>

@@ -21,12 +21,12 @@ deployment:
   production:
     branch: releases
     commands:
-      - ./deploy.sh --bucket=advice.shinetext.com
+      - ./deploy.sh --bucket=advice.shinetext.com --dailyshine_s3=daily.shinetext.com
   dev:
     branch: master
     commands:
-      - ./deploy.sh --bucket=st-webcontent-dev
+      - ./deploy.sh --bucket=st-webcontent-dev --dailyshine_s3=st-daily-dev
   jon:
     branch: jon
     commands:
-      - ./deploy.sh --bucket=st-webcontent-jon
+      - ./deploy.sh --bucket=st-webcontent-jon --dailyshine_s3=st-daily-jon

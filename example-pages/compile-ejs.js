@@ -72,8 +72,8 @@ compile('../templates/advice-home.ejs', 'example-advice-home.html', adviceData);
 const dailyData = {
   css: '../_tmp/dailyshine.css',
   jsPath: '..',
-
-  contentBaseUrl: process.env.DAILYSHINE_CONTENT_BASE_URL,
+  contentBaseUrl: 'http://daily.shinetext.com/_data/', // <---- change this to adjust test content used
+  photonBaseUrl: 'https://st-photon.herokuapp.com/', // <---- change this to adjust test content used
 };
 
 compile('../templates/daily-shine.ejs', 'example-dailyshine.html', dailyData);

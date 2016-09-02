@@ -43,7 +43,10 @@
 
   <!-- Template for messages with links. -->
   <script id="template-mt-link" type="text/template">
-    <a class="message-bubble mt-link" href="<?= linkUrl ?>" target="_blank">
+    <a class="message-bubble mt-link" href="<?= linkUrl ?>" target="_blank"
+      ga-on="click"
+      ga-event-category="Article"
+      ga-event-action="click">
       <div class="container-msg">
         <?- message ?>
       </div>
@@ -61,14 +64,17 @@
 
   <!-- Template for button choices the user can tap to respond with. -->
   <script id="template-mo-choice" type="text/template">
-    <div class="mo-container">
-      <div id="mo-<?= messageNum ?>" class="mo-choice message-bubble"
-        ga-on="click"
-        ga-event-category="MO"
-        ga-event-action="click">
-      <?= label ?>
-      </div>
+    <div id="<?= id ?>" class="mo-choice message-bubble"
+      ga-on="click"
+      ga-event-category="MO"
+      ga-event-action="click">
+    <?= label ?>
     </div>
+  </script>
+
+  <!-- Template for a container for the mo-choices -->
+  <script id="template-mo-container" type="text/template">
+    <div id="mo-container-<?= messageCounter ?>" class="mo-container"></div>
   </script>
 
   <!-- Template for section that's displayed once the end is reached -->
@@ -79,7 +85,12 @@
     <h2>Get Shine!</h2>
     <p>🌟 Like what you read? 🌟</p>
     <p>Get Shine now for daily affirmations on your phone!</p>
-    <a href="http://www.shinetext.com"><div class="signup-button">SIGN UP</div></a>
+    <a href="http://www.shinetext.com"
+      ga-on="click"
+      ga-event-category="SignUp"
+      ga-event-action="click">
+      <div class="signup-button">SIGN UP</div>
+    </a>
   <? } else { ?>
     <h2>Pass On the Shine!</h2>
     <p>Share the good feels with your bffs 😻 with the link below.</p>
@@ -87,8 +98,16 @@
       <?= shareLink ?>
     </a>
     <p>or share on</p>
-    <a class="social-icon -facebook" href="http://www.facebook.com/sharer/sharer.php?u=<?= shareLink ?>" target="_blank"></a>
-    <a class="social-icon -twitter" href="http://twitter.com/share?url=<?= shareLink ?>&text=Today's Shine from @ShineText!" target="_blank"></a>
+    <a class="social-icon -facebook" href="http://www.facebook.com/sharer/sharer.php?u=<?= shareLink ?>" target="_blank"
+      ga-on="click"
+      ga-event-category="Social"
+      ga-event-action="share"
+      ga-event-label="facebook"></a>
+    <a class="social-icon -twitter" href="http://twitter.com/share?url=<?= shareLink ?>&text=Today's Shine from @ShineText!" target="_blank"
+      ga-on="click"
+      ga-event-category="Social"
+      ga-event-action="share"
+      ga-event-label="twitter"></a>
   <? } ?>
   </script>
 

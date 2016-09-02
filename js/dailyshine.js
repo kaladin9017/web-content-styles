@@ -76,7 +76,7 @@
     // specified in a `date` param, then use that.
     var date;
     if (getParameter('date')) {
-      date = new Date(getParameter('date'));
+      date = createDateFromQuery(getParameter('date'));
     }
     else {
       date = new Date();
@@ -447,6 +447,28 @@
   }
 
   /**
+   * Helper function to create a Date object from the date query param. Different
+   * browsers seem to handle Date.parse differently, so this is a really basic,
+   * non-robust way of us handling it.
+   * Note: the expected format from the query is MM-dd-YYYY
+   *
+   * @param strDate
+   * @return Date object
+   */
+  function createDateFromQuery(strDate) {
+    var parts = strDate.split('-');
+    if (parts.length != 3) {
+      // Default to just letting Date.parse do its thing if it can
+      return new Date(strDate);
+    }
+
+    var month = parseInt(parts[0]) - 1; // month is 0-indexed
+    var day = parts[1];
+    var year = parts[2];
+    return new Date(year, month, day);
+  }
+
+  /**
    * Logic to run once the end of the messaging flow has been reached.
    *
    * @param displayDelay
@@ -465,7 +487,7 @@
 
     // Set the date query string for the share link
     if (getParameter('date')) {
-      date = new Date(getParameter('date'));
+      date = createDateFromQuery(getParameter('date'));
     }
     else {
       date = new Date();

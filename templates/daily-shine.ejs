@@ -100,14 +100,14 @@
     <p>or share on</p>
     <a class="social-icon -facebook" href="http://www.facebook.com/sharer/sharer.php?u=<?= shareLink ?>" target="_blank"
       ga-on="click"
-      ga-event-category="Social"
-      ga-event-action="share"
-      ga-event-label="facebook"></a>
+      ga-event-category="Share"
+      ga-event-action="facebook"
+      ga-event-label="<?= shareLink ?>"></a>
     <a class="social-icon -twitter" href="http://twitter.com/share?url=<?= shareLink ?>&text=Today's Shine from @ShineText!" target="_blank"
       ga-on="click"
-      ga-event-category="Social"
-      ga-event-action="share"
-      ga-event-label="twitter"></a>
+      ga-event-category="Share"
+      ga-event-action="twitter"
+      ga-event-label="<?= shareLink ?>"></a>
   <? } ?>
   </script>
 

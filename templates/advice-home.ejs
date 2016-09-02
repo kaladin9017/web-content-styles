@@ -24,15 +24,14 @@
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
     ga('create', 'UA-68971267-1', 'shinetext.com');
+    ga('require', 'eventTracker');
     ga('send', 'pageview');
 
   </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <script async src='https://cdnjs.cloudflare.com/ajax/libs/autotrack/1.0.1/autotrack.js'></script>
 </head>
 <body id="advice-home">
   <div class="navbar">
@@ -45,10 +44,18 @@
       <div class="navbar-links"><a href="http://www.shinetext.com/referrals">Invite Friends</a></div>
       <div class="navbar-links"><a href="http://www.shinetext.com/squad">The Squad</a></div>
     </div>
-    <i id="mobile-menu-button" class="fa fa-bars" aria-hidden="true"></i>
+    <i id="mobile-menu-button" class="fa fa-bars" aria-hidden="true"
+      ga-on="click"
+      ga-event-category="Behavior"
+      ga-event-action="mobile menu click"
+      ga-event-label="open"></i>
   </div>
   <div id="mobile-menu">
-    <i id="mobile-menu-button-close" class="fa fa-times" aria-hidden="true"></i>
+    <i id="mobile-menu-button-close" class="fa fa-times" aria-hidden="true"
+      ga-on="click"
+      ga-event-category="Behavior"
+      ga-event-action="mobile menu click"
+      ga-event-label="close"></i>
     <ul>
       <li><a class="nav-open" href="/">Get Advice</a></li>
       <li><a href="http://www.shinetext.com/referrals">Invite Friends</a></li>
@@ -69,14 +76,23 @@
     <div class="row">
       <div id="recent-articles"></div>
     </div>
-    <div id="read-more">Read More</div>
+    <div id="read-more"
+      ga-on="click"
+      ga-event-category="Behavior"
+      ga-event-action="Read More">Read More</div>
   </div>
 
   <footer>
     <div class="footer-cta">
       <div class="cta-heading">Like what you read?</div>
       <div class="cta-copy">Get Shine now for daily affirmations on your phone!</div>
-      <a href="http://www.shinetext.com"><div class="signup-button">Sign Up</div></a>
+      <a href="http://www.shinetext.com"
+        ga-on="click"
+        ga-event-category="CTA"
+        ga-event-action="signup"
+        ga-event-label="advice.shinetext">
+        <div class="signup-button">Sign Up</div>
+      </a>
     </div>
 
     <div class="social-and-footer-nav">

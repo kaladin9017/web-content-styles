@@ -186,18 +186,44 @@
    * @param additionalDelay Additional delay before displaying the MO choices
    */
   function loadMOChoices(messages, additionalDelay) {
-    // @todo For now, just handling one MO option to display
-    var id = messages[0].sys.id;
-    var url = contentBaseUrl + 'messages/' + id + '.json';
+    var id;
+    var url;
+    var i;
+    var messageData = [];
+    var numMessages = messages.length;
+    var requestCounter = 0;
 
-    $.get({
-      url: url,
-      data: null,
-      success: function(data) {
-        displayMOChoices(data, additionalDelay);
-      },
-      dataType: 'json',
-    });
+    for (i = 0; i < messages.length; i++) {
+      id = messages[i].sys.id;
+      url = contentBaseUrl + 'messages/' + id + '.json';
+
+      $.get({
+        url: url,
+        data: null,
+        error: onError,
+        success: onSuccess,
+        dataType: 'json',
+      });
+    }
+
+    function onSuccess(data) {
+      requestCounter++;
+      if (data) {
+        messageData.push(data);
+      }
+
+      if (requestCounter == numMessages) {
+        displayMOChoices(messageData, additionalDelay);
+      }
+    }
+
+    function onError() {
+      requestCounter++;
+
+      if (requestCounter == numMessages) {
+        displayMOChoices(messageData, additionalDelay);
+      }
+    }
   }
 
   /**
@@ -208,29 +234,46 @@
    * @param additionalDelay Additional delay before displaying the MO choices
    */
   function displayMOChoices(content, additionalDelay) {
+    var container;
     var data;
     var element;
-    var html
+    var html;
+    var id;
     var template;
+    var i;
 
-    template = $('#template-mo-choice').html();
+    // Create object for the container
+    template = $('#template-mo-container').html();
+    html = ejs.render(template, {messageCounter: messageCounter}, {delimiter: '?'});
+    container = $(html);
 
-    data = {
-      label: localized(content.label),
-      messageNum: messageCounter,
-    };
+    // Create objects for the individual choices
+    for (i = 0; content && i < content.length; i++) {
+      template = $('#template-mo-choice').html();
+      id = 'mo-' + messageCounter + '-' + i;
 
-    html = ejs.render(template, data, {delimiter: '?'});
-    element = $('#container-messages').append(html).children(':last');
-    element.hide()
-        .delay(additionalDelay + DELAY_MO_DISPLAY)
-        .fadeIn(DISPLAY_ANIM_DURATION);
+      data = {
+        id: id,
+        label: localized(content[i].label),
+      };
 
-    $('#mo-' + messageCounter).on('click', onClickMOChoice);
+      html = ejs.render(template, data, {delimiter: '?'});
+      element = container.append(html).children(':last');
 
-    // Add the contents of this message to the queue. When the user clicks on
-    // the choice, it can then display the content it finds in the queue.
-    MESSAGE_QUEUE.push(content);
+      element.on('click', onClickMOChoice);
+
+      // Add the contents of this message to the queue. When the user clicks on
+      // the choice, it can then display the content it finds in the queue.
+      MESSAGE_QUEUE.push({id: id, content: content[i]});
+    }
+
+    // Add the new content to the DOM
+    $('#container-messages')
+      .append(container)
+      .children(':last')
+      .hide()
+      .delay(additionalDelay + DELAY_MO_DISPLAY)
+      .fadeIn(DISPLAY_ANIM_DURATION);
   }
 
   /**
@@ -239,13 +282,11 @@
   function onClickMOChoice() {
     var element = $(this);
 
-    // @todo Trigger any animation that should happen here before displaying
-    // the next message
-    element.removeClass('-active');
+    // Changing classes triggers animations
     element.addClass('-clicked');
     element.off('click');
 
-    displayNextMessage();
+    displayNextMessage(element.attr('id'));
 
     // This feels kinda hacky, but whatever
     var delay = 750;
@@ -261,14 +302,44 @@
 
   /**
    * Displays the next message in the queue.
+   *
+   * @param id ID of the button that was clicked
    */
-  function displayNextMessage() {
-    if (MESSAGE_QUEUE.length > 0) {
-      messageCounter++;
+  function displayNextMessage(id) {
+    var i;
+    var content;
+    var split;
 
-      var content = MESSAGE_QUEUE.shift();
-      displayMT(content);
+    var checkNum;
+    var messageNum = false;
+
+    // Loop through to find the message corresponding to the id
+    for (i = MESSAGE_QUEUE.length - 1; i >= 0; i--) {
+      if (id == MESSAGE_QUEUE[i].id) {
+        content = MESSAGE_QUEUE[i].content;
+
+        // Find out what message this is for. Assumed id format: mo-#-#
+        split = MESSAGE_QUEUE[i].id.split('-');
+        messageNum = split[1];
+
+        // Remove this item
+        MESSAGE_QUEUE.splice(i, 1);
+        break;
+      }
     }
+
+    // Loop through again to find any messages that we should now remove
+    for (i = MESSAGE_QUEUE.length - 1; messageNum != -1 && i >= 0; i--) {
+      split = MESSAGE_QUEUE[i].id.split('-');
+      checkNum = split[1];
+      if (checkNum == messageNum) {
+        $('#' + MESSAGE_QUEUE[i].id).hide();
+        MESSAGE_QUEUE.splice(i, 1);
+      }
+    }
+
+    messageCounter++;
+    displayMT(content);
   }
 
   /**

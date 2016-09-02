@@ -24,15 +24,14 @@
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
     ga('create', 'UA-68971267-1', 'auto');
+    ga('require', 'eventTracker');
     ga('send', 'pageview');
 
   </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <script async src='https://cdnjs.cloudflare.com/ajax/libs/autotrack/1.0.1/autotrack.js'></script>
 </head>
 <body id="shine-article">
   <div class="navbar">
@@ -88,10 +87,26 @@
         <!-- <div id="date"><%= articleDate %></div> -->
         <div class="social-tags-container">
           <div class="social-container col-xs-12 col-xs-offset-0 col-md-6">
-            <a class="icon-facebook social-icon" href="http://www.facebook.com/sharer/sharer.php?u=http://advice.shinetext.com/<%= articleUrlPath %>" target="_blank"></a>
-            <a class="icon-twitter social-icon" href="http://twitter.com/share?via=ShineText&url=http://advice.shinetext.com/<%= articleUrlPath %>&text=<%= articleTitle %>" target="_blank"></a>
-            <a class="icon-linkedin social-icon" href="https://www.linkedin.com/shareArticle?mini=true&url=http://advice.shinetext.com/<%= articleUrlPath %>&title=<%= articleTitle %>" target="_blank"></a>
-            <a class="icon-email social-icon" href="mailto:?subject=<%= articleTitle %>&body=Article: http://advice.shinetext.com/<%= articleUrlPath %>" rel="external"></a>
+            <a class="icon-facebook social-icon" href="http://www.facebook.com/sharer/sharer.php?u=http://advice.shinetext.com/<%= articleUrlPath %>" target="_blank"
+              ga-on="click"
+              ga-event-category="Share"
+              ga-event-action="facebook"
+              ga-event-label="<%= articleUrlPath %>"></a>
+            <a class="icon-twitter social-icon" href="http://twitter.com/share?via=ShineText&url=http://advice.shinetext.com/<%= articleUrlPath %>&text=<%= articleTitle %>" target="_blank"
+              ga-on="click"
+              ga-event-category="Share"
+              ga-event-action="twitter"
+              ga-event-label="<%= articleUrlPath %>"></a>
+            <a class="icon-linkedin social-icon" href="https://www.linkedin.com/shareArticle?mini=true&url=http://advice.shinetext.com/<%= articleUrlPath %>&title=<%= articleTitle %>" target="_blank"
+              ga-on="click"
+              ga-event-category="Share"
+              ga-event-action="linkedin"
+              ga-event-label="<%= articleUrlPath %>"></a>
+            <a class="icon-email social-icon" href="mailto:?subject=<%= articleTitle %>&body=Article: http://advice.shinetext.com/<%= articleUrlPath %>" rel="external"
+              ga-on="click"
+              ga-event-category="Share"
+              ga-event-action="email"
+              ga-event-label="<%= articleUrlPath %>"></a>
           </div>
 
           <div class="tags-container col-xs-12 col-xs-offset-0 col-md-6">
@@ -112,10 +127,26 @@
 
       <div class="post-article">
         <div class="social-container">
-          <a class="icon-facebook social-icon" href="http://www.facebook.com/sharer/sharer.php?u=http://advice.shinetext.com/<%= articleUrlPath %>" target="_blank"></a>
-          <a class="icon-twitter social-icon" href="http://twitter.com/share?via=ShineText&url=http://advice.shinetext.com/<%= articleUrlPath %>&text=<%= articleTitle %>" target="_blank"></a>
-          <a class="icon-linkedin social-icon" href="https://www.linkedin.com/shareArticle?mini=true&url=http://advice.shinetext.com/<%= articleUrlPath %>&title=<%= articleTitle %>" target="_blank"></a>
-          <a class="icon-email social-icon" href="mailto:?subject=<%= articleTitle %>&body=Article: http://advice.shinetext.com/<%= articleUrlPath %>" rel="external"></a>
+          <a class="icon-facebook social-icon" href="http://www.facebook.com/sharer/sharer.php?u=http://advice.shinetext.com/<%= articleUrlPath %>" target="_blank"
+            ga-on="click"
+            ga-event-category="Share"
+            ga-event-action="facebook"
+            ga-event-label="<%= articleUrlPath %>"></a>
+          <a class="icon-twitter social-icon" href="http://twitter.com/share?via=ShineText&url=http://advice.shinetext.com/<%= articleUrlPath %>&text=<%= articleTitle %>" target="_blank"
+            ga-on="click"
+            ga-event-category="Share"
+            ga-event-action="twitter"
+            ga-event-label="<%= articleUrlPath %>"></a>
+          <a class="icon-linkedin social-icon" href="https://www.linkedin.com/shareArticle?mini=true&url=http://advice.shinetext.com/<%= articleUrlPath %>&title=<%= articleTitle %>" target="_blank"
+            ga-on="click"
+            ga-event-category="Share"
+            ga-event-action="linkedin"
+            ga-event-label="<%= articleUrlPath %>"></a>
+          <a class="icon-email social-icon" href="mailto:?subject=<%= articleTitle %>&body=Article: http://advice.shinetext.com/<%= articleUrlPath %>" rel="external"
+            ga-on="click"
+            ga-event-category="Share"
+            ga-event-action="email"
+            ga-event-label="<%= articleUrlPath %>"></a>
         </div>
 
         <div class="tags-container">
@@ -162,7 +193,13 @@
       <div class="footer-cta">
         <div class="cta-heading">Like what you read?</div>
         <div class="cta-copy">Get Shine now for daily affirmations on your phone!</div>
-        <a href="http://www.shinetext.com"><div class="signup-button">Sign Up</div></a>
+        <a href="http://www.shinetext.com"
+          ga-on="click"
+          ga-event-category="CTA"
+          ga-event-action="signup"
+          ga-event-label="<%= articleUrlPath %>">
+          <div class="signup-button">Sign Up</div>
+        </a>
       </div>
 
       <div class="social-and-footer-nav">

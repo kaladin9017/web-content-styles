@@ -44,13 +44,6 @@
         success: function(data) {
           userData = data;
 
-          if (userData && userData.firstName) {
-            displayMT({
-              body: 'Good morning, ' + userData.firstName + '!',
-              intro: true,
-            });
-          }
-
           loadDailyShine();
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -174,7 +167,7 @@
     if (nextMessages && nextMessages.length > 0) {
       loadMOChoices(nextMessages, displayDelay);
     }
-    else if (! content.intro) {
+    else {
       onMessagesFinished(displayDelay);
     }
   }

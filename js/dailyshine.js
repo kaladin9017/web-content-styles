@@ -141,6 +141,7 @@
         if (i == messages.length - 1) {
           data.linkTitle = localized(content.linkTitle);
           data.linkUrl = localized(content.linkUrl);
+          data.dateClicked = formatDateMMddyyy(new Date());
         }
       }
 
@@ -462,6 +463,21 @@
   }
 
   /**
+   * Helper function to format date to MM-dd-yyyy.
+   *
+   * @param date string
+   * @return formatted string
+   */
+  function formatDateMMddyyy(date) {
+    year = date.getFullYear();
+    month = date.getMonth() + 1 >= 10 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1);
+    day = date.getDate() >= 10 ? date.getDate() : '0' + date.getDate();
+    return month + '-' + day + '-' + year;
+  }
+  // Note: for some reason `new Date('MM-dd-YYYY')` works, but
+  //   `new Date('YYYY-MM-dd')` sets date a day behind.
+
+  /**
    * Logic to run once the end of the messaging flow has been reached.
    *
    * @param displayDelay
@@ -486,17 +502,13 @@
       date = new Date();
     }
 
-    year = date.getFullYear();
-    month = date.getMonth() + 1 >= 10 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1);
-    day = date.getDate() >= 10 ? date.getDate() : '0' + date.getDate();
-    dateQuery = month + '-' + day + '-' + year;
-    // Note: for some reason `new Date('MM-dd-YYYY')` works, but
-    //   `new Date('YYYY-MM-dd')` sets date a day behind.
+    dateQuery = formatDateMMddyyy(date);
 
     data = {
       // Used for the share link
       shareLink: 'http://' + window.location.hostname + '?date=' + dateQuery,
       showSignUp: getParameter('r') ? false : true,
+      dateClicked: dateQuery
     };
 
     html = ejs.render(template, data, {delimiter: '?'});

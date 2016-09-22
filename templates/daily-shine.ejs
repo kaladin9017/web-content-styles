@@ -46,7 +46,8 @@
     <a class="message-bubble mt-link" href="<?= linkUrl ?>" target="_blank"
       ga-on="click"
       ga-event-category="Article"
-      ga-event-action="click">
+      ga-event-action="click"
+      ga-event-label="<?= dateClicked ?>">
       <div class="container-msg">
         <?- message ?>
       </div>
@@ -67,7 +68,8 @@
     <div id="<?= id ?>" class="mo-choice message-bubble"
       ga-on="click"
       ga-event-category="MO"
-      ga-event-action="click">
+      ga-event-action="click"
+      ga-event-label="<?= id ?>">
     <?= label ?>
     </div>
   </script>
@@ -88,7 +90,8 @@
     <a href="http://www.shinetext.com"
       ga-on="click"
       ga-event-category="SignUp"
-      ga-event-action="click">
+      ga-event-action="click"
+      ga-event-label="<?= dateClicked ?>">
       <div class="signup-button">SIGN UP</div>
     </a>
   <? } else { ?>

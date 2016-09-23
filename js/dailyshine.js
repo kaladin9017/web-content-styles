@@ -141,7 +141,7 @@
         if (i == messages.length - 1) {
           data.linkTitle = localized(content.linkTitle);
           data.linkUrl = localized(content.linkUrl);
-          data.dateClicked = formatDateMMddyyy(new Date());
+          data.shineDate = getShineDate();
         }
       }
 
@@ -465,17 +465,32 @@
   /**
    * Helper function to format date to MM-dd-yyyy.
    *
-   * @param date string
-   * @return formatted string
+   * @param Date object
+   * @return formatted date string
    */
   function formatDateMMddyyy(date) {
-    year = date.getFullYear();
-    month = date.getMonth() + 1 >= 10 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1);
-    day = date.getDate() >= 10 ? date.getDate() : '0' + date.getDate();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1 >= 10 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1);
+    var day = date.getDate() >= 10 ? date.getDate() : '0' + date.getDate();
     return month + '-' + day + '-' + year;
   }
   // Note: for some reason `new Date('MM-dd-YYYY')` works, but
   //   `new Date('YYYY-MM-dd')` sets date a day behind.
+
+  /**
+   * Helper function to get date of Shine
+   * @return formatted date string (mm-dd-yyyy)
+   */
+  function getShineDate() {
+    var dateObj;
+    var dateSpecified = getParameter('date');
+    if (dateSpecified) {
+      dateObj = createDateFromQuery(dateSpecified);
+      return formatDateMMddyyy(dateObj);
+    } else {
+      return formatDateMMddyyy(new Date());
+    }
+  }
 
   /**
    * Logic to run once the end of the messaging flow has been reached.
@@ -484,31 +499,22 @@
    */
   function onMessagesFinished(displayDelay) {
     var data;
-    var date;
     var dateQuery;
     var endMessage;
     var html;
     var template;
-    var month, day, year;
 
     // Display the end CTA section
     template = $('#template-daily-end').html();
 
     // Set the date query string for the share link
-    if (getParameter('date')) {
-      date = createDateFromQuery(getParameter('date'));
-    }
-    else {
-      date = new Date();
-    }
-
-    dateQuery = formatDateMMddyyy(date);
+    dateQuery = getShineDate();
 
     data = {
       // Used for the share link
       shareLink: 'http://' + window.location.hostname + '?date=' + dateQuery,
       showSignUp: getParameter('r') ? false : true,
-      dateClicked: dateQuery
+      shineDate: dateQuery
     };
 
     html = ejs.render(template, data, {delimiter: '?'});

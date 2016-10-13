@@ -9,12 +9,11 @@ dependencies:
     - sudo pip install awscli
     - npm install -g ejs
     - npm install -g less
-    - npm install -g mocha
 
 ## Custom test commands
 test:
   override:
-    - mocha .
+    - echo "Tests TBD"
 
 ## Custom deployment commands
 deployment:

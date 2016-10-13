@@ -14,7 +14,7 @@ dependencies:
 ## Custom test commands
 test:
   override:
-    - mocha .
+    - echo "Tests TBD"
 
 ## Custom deployment commands
 deployment:

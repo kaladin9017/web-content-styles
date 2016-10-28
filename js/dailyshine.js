@@ -365,9 +365,10 @@
     var i;
     var regex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
 
+    // @todo this fails if the same URL is in the string more than once
     matches = text.match(regex);
     for (i = 0; matches && i < matches.length; i++) {
-      match = matches[0].trim();
+      match = matches[i].trim();
       if (match.indexOf('http') >= 0 && text.indexOf(match) >= 0) {
         startAnchor = '<a href="' + match + '" target="_blank">';
         endAnchor = '</a>';

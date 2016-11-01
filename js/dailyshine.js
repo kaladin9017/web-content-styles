@@ -51,6 +51,7 @@
             status: textStatus,
             error: errorThrown,
           });
+          sendAjaxErrorEvent('loadUser', url);
 
           loadDailyShine();
         },
@@ -89,6 +90,9 @@
       success: function(data) {
         displayMT(data.starterMessage['en-US'].fields);
       },
+      error: function(jqXHR, textStatus, errorThrown) {
+        sendAjaxErrorEvent('loadDailyShine', url);
+      }
     });
   }
 
@@ -212,6 +216,8 @@
     }
 
     function onError() {
+      sendAjaxErrorEvent('loadMOChoices', url);
+
       requestCounter++;
 
       if (requestCounter == numMessages) {
@@ -533,6 +539,18 @@
         eventLabel: dateQuery,
       });
     }
+  }
+
+  /**
+   * Sends a GA event to log any ajax errors.
+   *
+   * @param label
+   * @param value
+   */
+  function sendAjaxErrorEvent(label, value) {
+    if (! ga) { return; }
+
+    ga('send', 'event', 'error', 'ajax', label, value);
   }
 
 })();

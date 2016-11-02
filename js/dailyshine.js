@@ -51,7 +51,7 @@
             status: textStatus,
             error: errorThrown,
           });
-          sendAjaxErrorEvent('loadUser', url);
+          sendErrorEvent('loadUser', url);
 
           loadDailyShine();
         },
@@ -91,7 +91,7 @@
         displayMT(data.starterMessage['en-US'].fields);
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        sendAjaxErrorEvent('loadDailyShine', url);
+        sendErrorEvent('loadDailyShine', url);
       }
     });
   }
@@ -216,7 +216,7 @@
     }
 
     function onError() {
-      sendAjaxErrorEvent('loadMOChoices', url);
+      sendErrorEvent('loadMOChoices', url);
 
       requestCounter++;
 
@@ -544,13 +544,18 @@
   /**
    * Sends a GA event to log any ajax errors.
    *
+   * @param action
    * @param label
-   * @param value
    */
-  function sendAjaxErrorEvent(label, value) {
+  function sendErrorEvent(action, label) {
     if (! ga) { return; }
 
-    ga('send', 'event', 'error', 'ajax', label, value);
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Error',
+      eventAction: action,
+      eventLabel: label,
+    });
   }
 
 })();

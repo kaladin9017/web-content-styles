@@ -51,7 +51,12 @@
             status: textStatus,
             error: errorThrown,
           });
-          sendErrorEvent('loadUser', url);
+
+          var eventLabel = url;
+          if (jqXHR) {
+            eventLabel = jqXHR.status + '|' + jqXHR.statusText + '|' + url;
+          }
+          sendErrorEvent('loadUser', eventLabel);
 
           loadDailyShine();
         },
@@ -91,7 +96,11 @@
         displayMT(data.starterMessage['en-US'].fields);
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        sendErrorEvent('loadDailyShine', url);
+        var eventLabel = url;
+        if (jqXHR) {
+          eventLabel = jqXHR.status + '|' + jqXHR.statusText + '|' + url;
+        }
+        sendErrorEvent('loadDailyShine', eventLabel);
       }
     });
   }
@@ -215,8 +224,12 @@
       }
     }
 
-    function onError() {
-      sendErrorEvent('loadMOChoices', url);
+    function onError(jqXHR, textStatus, errorThrown) {
+      var eventLabel = url;
+      if (jqXHR) {
+        eventLabel = jqXHR.status + '|' + jqXHR.statusText + '|' + url;
+      }
+      sendErrorEvent('loadMOChoices', eventLabel);
 
       requestCounter++;
 

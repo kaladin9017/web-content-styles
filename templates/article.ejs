@@ -3,20 +3,31 @@
 <head>
   <title><%if (typeof pageTitle !== 'undefined') {%><%= pageTitle %><% } else { %>Shine<% } %></title>
 
+<%
+var ARTICLE_SHARE_DESCRIPTION = 'Career and life advice from real people. Get daily fulfillment and read up on how to live your best life.';
+var ARTICLE_SHARE_IMAGE = 'https://images.contentful.com/awpxl2koull4/FFhnW3pbga4qmCOM24kmc/8c718dac9a5357db86c55b637461f4f3/Shine-logo-web.png';
+var ARTICLE_SHARE_TITLE = 'Shine Advice';
+var ARTICLE_SHARE_URL = 'http://advice.shinetext.com/' + articleUrlPath;
+
+if (typeof articleDescription !== 'undefined') { ARTICLE_SHARE_DESCRIPTION = articleDescription; }
+if (typeof articleHeaderPhoto !== 'undefined') { ARTICLE_SHARE_IMAGE = articleHeaderPhoto; }
+if (typeof articleTitle !== 'undefined') { ARTICLE_SHARE_TITLE = articleTitle + ' | Shine'; }
+%>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="<% if (typeof articleDescription !== 'undefined') { %><%= articleDescription %><% } else { %>Career and life advice from real people. Get daily fulfillment and read up on how to live your best life.<% } %>" />
+  <meta name="description" content="<%= ARTICLE_SHARE_DESCRIPTION %>" />
 
-  <meta property="og:url" content="http://advice.shinetext.com/<%= articleUrlPath %>" />
-  <meta property="og:title" content="<% if (typeof articleTitle !== 'undefined') { %><%= articleTitle %> | <% } %>Shine" />
-  <meta property="og:description" content="<% if (typeof articleDescription !== 'undefined') { %><%= articleDescription %><% } else { %>Career and life advice from real people. Get daily fulfillment and read up on how to live your best life.<% } %>" />
+  <meta property="og:url" content="<%= ARTICLE_SHARE_URL %>" />
+  <meta property="og:title" content="<%= ARTICLE_SHARE_TITLE %>" />
+  <meta property="og:description" content="<%= ARTICLE_SHARE_DESCRIPTION %>" />
   <meta property="og:site_name" content="Shine" />
-  <meta property="og:image" content="<% if (typeof articleHeaderPhoto !== 'undefined') { %><%= articleHeaderPhoto %><% } else { %>https://images.contentful.com/awpxl2koull4/FFhnW3pbga4qmCOM24kmc/8c718dac9a5357db86c55b637461f4f3/Shine-logo-web.png<% } %>" />
+  <meta property="og:image" content="<%= ARTICLE_SHARE_IMAGE %>" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:description" content="<% if (typeof articleDescription !== 'undefined') { %><%= articleDescription %><% } else { %>Career and life advice from real people. Get daily fulfillment and read up on how to live your best life.<% } %>" />
-  <meta name="twitter:image" content="<% if (typeof articleHeaderPhoto !== 'undefined') { %><%= articleHeaderPhoto %>?w=280<% } else { %>https://images.contentful.com/awpxl2koull4/FFhnW3pbga4qmCOM24kmc/8c718dac9a5357db86c55b637461f4f3/Shine-logo-web.png<% } %>" />
+  <meta name="twitter:description" content="<%= ARTICLE_SHARE_DESCRIPTION %>" />
+  <meta name="twitter:image" content="<%= ARTICLE_SHARE_IMAGE %>" />
   <meta name="twitter:site" content="@ShineText" />
-  <meta name="twitter:title" content="<% if (typeof articleTitle !== 'undefined') { %><%= articleTitle %> | <% } %>Shine" />
+  <meta name="twitter:title" content="<%= ARTICLE_SHARE_TITLE %>" />
 
   <link href="https://fonts.googleapis.com/css?family=Caveat+Brush" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Karla:400,400i,700" rel="stylesheet" type="text/css">
@@ -94,22 +105,27 @@
         <!-- <div id="date"><%= articleDate %></div> -->
         <div class="social-tags-container">
           <div class="social-container col-xs-12 col-xs-offset-0 col-md-6">
-            <a class="icon-facebook social-icon" href="http://www.facebook.com/sharer/sharer.php?u=http://advice.shinetext.com/<%= articleUrlPath %>" target="_blank"
+            <a class="icon-facebook social-icon" href="http://www.facebook.com/sharer/sharer.php?u=<%= ARTICLE_SHARE_URL %>&title=<%= ARTICLE_SHARE_TITLE %>&picture=<%= ARTICLE_SHARE_IMAGE %>&description=<%= ARTICLE_SHARE_DESCRIPTION %>" target="_blank"
               ga-on="click"
               ga-event-category="Share"
               ga-event-action="facebook"
               ga-event-label="<%= articleUrlPath %>"></a>
-            <a class="icon-twitter social-icon" href="http://twitter.com/share?via=ShineText&url=http://advice.shinetext.com/<%= articleUrlPath %>&text=<%= articleTitle %>&via=ShineText" target="_blank"
+            <a class="icon-twitter social-icon" href="http://twitter.com/share?via=ShineText&url=<%= ARTICLE_SHARE_URL %>&text=<%= articleTitle %>&via=ShineText" target="_blank"
               ga-on="click"
               ga-event-category="Share"
               ga-event-action="twitter"
               ga-event-label="<%= articleUrlPath %>"></a>
-            <a class="icon-linkedin social-icon" href="https://www.linkedin.com/shareArticle?mini=true&url=http://advice.shinetext.com/<%= articleUrlPath %>&title=<%= articleTitle %>" target="_blank"
+            <a class="icon-pinterest social-icon" data-pin-do="buttonPin" data-pin-tall="true" data-pin-round="true" data-pin-save="false" href="https://www.pinterest.com/pin/create/button/?url=<%= ARTICLE_SHARE_URL %>&media=<%= ARTICLE_SHARE_IMAGE %>&description=<%= ARTICLE_SHARE_DESCRIPTION %>" target="_blank"
+              ga-on="click"
+              ga-event-category="Share"
+              ga-event-action="pinterest"
+              ga-event-label="<%= articleUrlPath %>"></a>
+            <a class="icon-linkedin social-icon" href="https://www.linkedin.com/shareArticle?mini=true&url=<%= ARTICLE_SHARE_URL %>&title=<%= articleTitle %>" target="_blank"
               ga-on="click"
               ga-event-category="Share"
               ga-event-action="linkedin"
               ga-event-label="<%= articleUrlPath %>"></a>
-            <a class="icon-email social-icon" href="mailto:?subject=<%= articleTitle %>&body=Article: http://advice.shinetext.com/<%= articleUrlPath %>" rel="external"
+            <a class="icon-email social-icon" href="mailto:?subject=<%= articleTitle %>&body=<%= ARTICLE_SHARE_URL %>" rel="external"
               ga-on="click"
               ga-event-category="Share"
               ga-event-action="email"
@@ -134,22 +150,27 @@
 
       <div class="post-article">
         <div class="social-container">
-          <a class="icon-facebook social-icon" href="http://www.facebook.com/sharer/sharer.php?u=http://advice.shinetext.com/<%= articleUrlPath %>" target="_blank"
+          <a class="icon-facebook social-icon" href="http://www.facebook.com/sharer/sharer.php?u=<%= ARTICLE_SHARE_URL %>&title=<%= ARTICLE_SHARE_TITLE %>&picture=<%= ARTICLE_SHARE_IMAGE %>&description=<%= ARTICLE_SHARE_DESCRIPTION %>" target="_blank"
             ga-on="click"
             ga-event-category="Share"
             ga-event-action="facebook"
             ga-event-label="<%= articleUrlPath %>"></a>
-          <a class="icon-twitter social-icon" href="http://twitter.com/share?via=ShineText&url=http://advice.shinetext.com/<%= articleUrlPath %>&text=<%= articleTitle %>&via=ShineText" target="_blank"
+          <a class="icon-twitter social-icon" href="http://twitter.com/share?via=ShineText&url=<%= ARTICLE_SHARE_URL %>&text=<%= articleTitle %>&via=ShineText" target="_blank"
             ga-on="click"
             ga-event-category="Share"
             ga-event-action="twitter"
             ga-event-label="<%= articleUrlPath %>"></a>
-          <a class="icon-linkedin social-icon" href="https://www.linkedin.com/shareArticle?mini=true&url=http://advice.shinetext.com/<%= articleUrlPath %>&title=<%= articleTitle %>" target="_blank"
+          <a class="icon-pinterest social-icon" data-pin-do="buttonPin" data-pin-tall="true" data-pin-round="true" data-pin-save="false" href="https://www.pinterest.com/pin/create/button/?url=<%= ARTICLE_SHARE_URL %>&media=<%= ARTICLE_SHARE_IMAGE %>&description=<%= ARTICLE_SHARE_DESCRIPTION %>" target="_blank"
+            ga-on="click"
+            ga-event-category="Share"
+            ga-event-action="pinterest"
+            ga-event-label="<%= articleUrlPath %>"></a>
+          <a class="icon-linkedin social-icon" href="https://www.linkedin.com/shareArticle?mini=true&url=<%= ARTICLE_SHARE_URL %>&title=<%= articleTitle %>" target="_blank"
             ga-on="click"
             ga-event-category="Share"
             ga-event-action="linkedin"
             ga-event-label="<%= articleUrlPath %>"></a>
-          <a class="icon-email social-icon" href="mailto:?subject=<%= articleTitle %>&body=Article: http://advice.shinetext.com/<%= articleUrlPath %>" rel="external"
+          <a class="icon-email social-icon" href="mailto:?subject=<%= articleTitle %>&body=<%= ARTICLE_SHARE_URL %>" rel="external"
             ga-on="click"
             ga-event-category="Share"
             ga-event-action="email"
@@ -235,5 +256,7 @@
   }
   </script>
   <script src="<% if (typeof jsPath !== 'undefined') { %><%= jsPath %><% } %>/js/navbar.js"></script>
+
+  <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
 </body>
 </html>

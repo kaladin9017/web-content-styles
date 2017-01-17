@@ -667,19 +667,26 @@
   }
 
   @media (min-width: @screen-sm-min) {
-    background-color: white;
-    border-top: 2px solid black;
-    font-size: @font-size-normal;
+    background-color: #FFE3A3;
 
     .signup-button {
-      margin: @margin-xs @margin-sm;
+      font-size: @font-size-btn;
+      margin: @margin-sm @margin-md;
       padding: @margin-xs;
       text-align: center;
-      width: 300px;
+      width: 250px;
     }
 
     .sticky-message {
-      padding: @margin-sm;
+      font-size: 20px;
+      margin: 30px 0 30px 40px;
+      padding: 0;
+    }
+  }
+
+  @media (min-width: @screen-md-min) {
+    .signup-button {
+      width: 300px;
     }
   }
 }

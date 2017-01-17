@@ -641,7 +641,7 @@
 }
 
 #sticky-footer {
-  background-image: linear-gradient(120deg, @color-gradient-yellow, @color-gradient-blue);
+  background-color: @color-yellow;
   bottom: 0;
   position: fixed;
   transform: translateY(100%);
@@ -653,6 +653,7 @@
     border-radius: 5px;
     color: white;
     float: right;
+    font-weight: 700;
     margin: 7px @margin-xs;
     padding: 7px @margin-xs;
     text-transform: uppercase;
@@ -663,6 +664,23 @@
     display: inline-block;
     font-weight: 700;
     padding: 14px @margin-xs;
+  }
+
+  @media (min-width: @screen-sm-min) {
+    background-color: white;
+    border-top: 2px solid black;
+    font-size: @font-size-normal;
+
+    .signup-button {
+      margin: @margin-xs @margin-sm;
+      padding: @margin-xs;
+      text-align: center;
+      width: 300px;
+    }
+
+    .sticky-message {
+      padding: @margin-sm;
+    }
   }
 }
 

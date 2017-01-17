@@ -217,6 +217,17 @@ if (typeof articleTitle !== 'undefined') { ARTICLE_SHARE_TITLE = articleTitle + 
 
     </div>
 
+    <div id="sticky-footer">
+      <div class="sticky-message">Get more like this on your phone!</div>
+      <a href="http://www.shinetext.com"
+        ga-on="click"
+        ga-event-category="CTA"
+        ga-event-action="sticky signup"
+        ga-event-label="<%= articleUrlPath %>">
+        <div class="signup-button">Sign Up</div>
+      </a>
+    </div>
+
     <footer>
       <div class="footer-cta">
         <div class="cta-heading">Like what you read?</div>
@@ -254,6 +265,16 @@ if (typeof articleTitle !== 'undefined') { ARTICLE_SHARE_TITLE = articleTitle + 
   if (s.isMobile()) { // but only on non-mobile devices
     s.destroy();
   }
+
+  // Display sticky footer after scrolling past header section
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 480) {
+      $('#sticky-footer').addClass('show');
+    }
+    else {
+      $('#sticky-footer').removeClass('show');
+    }
+  });
   </script>
   <script src="<% if (typeof jsPath !== 'undefined') { %><%= jsPath %><% } %>/js/navbar.js"></script>
 

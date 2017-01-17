@@ -639,3 +639,33 @@
     }
   }
 }
+
+#sticky-footer {
+  background-image: linear-gradient(120deg, @color-gradient-yellow, @color-gradient-blue);
+  bottom: 0;
+  position: fixed;
+  transform: translateY(100%);
+  transition: transform 0.3s linear;
+  width: 100%;
+
+  .signup-button {
+    background: black;
+    border-radius: 5px;
+    color: white;
+    float: right;
+    margin: 7px @margin-xs;
+    padding: 7px @margin-xs;
+    text-transform: uppercase;
+  }
+
+  .sticky-message {
+    color: black;
+    display: inline-block;
+    font-weight: 700;
+    padding: 14px @margin-xs;
+  }
+}
+
+#sticky-footer.show {
+  transform: translateY(0);
+}

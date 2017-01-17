@@ -25,7 +25,7 @@ else
   node deploy-scripts/compile-advice-home.js
 
   ## Deploy to S3
-  aws s3 cp _tmp/styles.css "s3://$BUCKET/styles.css"
+  aws s3 cp _tmp/styles.css "s3://$BUCKET/styles.css" --cache-control "max-age=86400"
   aws s3 cp _tmp/advice-home.html "s3://$BUCKET/index.html" --content-type="text/html"
   aws s3 cp js/ "s3://$BUCKET/js/" --recursive
   aws s3 cp templates/article.ejs "s3://$BUCKET/templates/article.ejs" --content-type="text/plain"
